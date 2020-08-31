@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/earlyaccess/amiri.css);
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabicnaskh.css);
+@import url(https://fonts.googleapis.com/earlyaccess/lateef.css); 
+@import url(https://fonts.googleapis.com/earlyaccess/scheherazade.css);
+@import url(https://fonts.googleapis.com/earlyaccess/thabit.css);
+
+@import url('https://fonts.googleapis.com/css?family=Reem+Kufi');
+@import url('https://fonts.googleapis.com/css?family=Mada');
+@import url('https://fonts.googleapis.com/css?family=Lemonada');
+@import url('https://fonts.googleapis.com/css?family=Changa');
+@import url('https://fonts.googleapis.com/css?family=Markazi+Text');
+@import url('https://fonts.googleapis.com/css?family=Amiri|Aref+Ruqaa|Baloo+Bhaijaan|Cairo|El+Messiri|Harmattan|Jomhuria|Katibeh|Lalezar|Lateef|Mirza|Rakkas|Scheherazade|Tajawal');
+
+.amiri{font-family: 'Amiri', serif;}
+.droid-arabic-kufi{font-family: 'Droid Arabic Kufi', serif;}
+.droid-arabic-naskh{font-family: 'Droid Arabic Naskh', serif;}
+.lateef{font-family: 'Lateef', serif;}
+.scheherazade{font-family: 'Scheherazade', serif;}
+.thabit{font-family: 'Thabit', serif;}
+
+.reem_kufi{font-family: 'Reem Kufi', sans-serif;}
+.mada{font-family: 'Mada', sans-serif;}
+.lemonada{font-family: 'Lemonada', cursive;}
+.change{font-family: 'Changa', sans-serif;}
+.markazi_text{font-family: 'Markazi Text', serif;}
+.lalezar{font-family: 'Lalezar', cursive;}
+.cairo{font-family: 'Cairo', sans-serif;}
+.elmessiri{font-family: 'El Messiri', sans-serif;}
+.tajawal{font-family: 'Tajawal', sans-serif;}
+.baloo_bhaijaan{font-family: 'Baloo Bhaijaan', cursive;}
+.harmattan{font-family: 'Harmattan', sans-serif;}
+.mirza{font-family: 'Mirza', cursive;}
+.rakkas{font-family: 'Rakkas', cursive;}
+.aref_ruqaa{font-family: 'Aref Ruqaa', serif;}
+.katibeh{font-family: 'Katibeh', cursive;}
+.jomhuria{font-family: 'Jomhuria', cursive;}
