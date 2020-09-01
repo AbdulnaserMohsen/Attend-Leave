@@ -14,6 +14,7 @@ use App\Job;
 use Auth;
 use App\User;
 use Cache;
+use App;
 
 class HomeController extends Controller
 {
@@ -81,8 +82,8 @@ class HomeController extends Controller
         $newday =  Calender::where('date',$current_date)->first();
         if($newday->day_status_id != 1)
         {
-            dd("no attend");
-            //return view("no_attend"); 
+            //dd("no attend");
+            return view("no_attend",compact("newday")); 
         }
         else
         {
@@ -198,15 +199,24 @@ class HomeController extends Controller
     public function user_year_months_statistics( $year, Request $request)
     {
         
-        $years = Calender::where('user_id',Auth::id())->has('attend_leave')->pluck('date') ->countBy(function($val) 
-            {
-                return Carbon::parse($val)->format('Y') ;
-            }) ;
+        if(in_array(Auth::id(), [1,2,3])){$user_id = 4;}
+        else{$user_id = Auth::id();}
+        
+        $years = Calender::whereHas('attend_leave', function($q) use($user_id)
+                    {
+                        $q->where('user_id', $user_id);
+                    })->pluck('date')->countBy(function($val) 
+                    {
+                        return Carbon::parse($val)->format('Y') ;
+                    }) ;
 
-        $months = Calender::has('attend_leave')->whereYear('date',$year)->pluck('date') ->countBy(function($val) 
-            {
-                return Carbon::parse($val)->monthName ;
-            }) ;
+        $months = Calender::whereHas('attend_leave', function($q) use($user_id)
+                        {
+                            $q->where('user_id', $user_id);
+                        })->whereYear('date',$year)->pluck('date') ->countBy(function($val) 
+                        {
+                            return Carbon::parse($val)->monthName ;
+                        });
 
 
         return view('year_month_statistics',compact('year','years','months'));
@@ -227,10 +237,13 @@ class HomeController extends Controller
             Cache::forever('table_paginate', $table_paginate);
         }
 
-        $attend_leaves = AttendLeave::whereHas('calendar', function($q) use($year,$month)
+        if(in_array(Auth::id(), [1,2,3])){$user_id = 4;}
+        else{$user_id = Auth::id();}
+
+        $attend_leaves = AttendLeave::where('user_id',$user_id)->whereHas('calendar', function($q) use($year,$month)
             {
-                $q->whereYear('date','=',$year)->whereMonth('date','=',$month);
-            })->where('user_id',Auth::id())->orderBy('user_id')->get();
+                $q->whereYear('date',$year)->whereMonth('date',$month);
+            })->orderBy('user_id')->get();
         
         $workers = $attend_leaves->groupBy('user_id');
         //$workers = $workers->paginate($worker_paginate);
@@ -262,9 +275,9 @@ class HomeController extends Controller
                     return $key;
                 }); 
 
-            $ordinary = AttendLeave::whereHas('calendar', function($q)
+            $ordinary = AttendLeave::whereHas('calendar', function($q) use($year,$month)
             {
-                $q->whereYear('date','=',2020)->whereMonth('date','=',8);
+                $q->whereYear('date', $year)->whereMonth('date',$month);
             })->where('user_id',$worker->first()->user_id)->paginate($table_paginate,['*'],'table');
             
             //dd($other_leave);

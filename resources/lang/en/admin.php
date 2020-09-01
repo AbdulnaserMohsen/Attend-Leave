@@ -93,9 +93,9 @@ return [
     'years' =>"Years",
     'days' =>"Days",
 
-    'absense' =>"الغياب",
-    'other_attend' =>"طرق حضور أخرى",
-    'other_leave' =>"طرق إنصراف أخرى",
+    'absense' =>"Absence",
+    'other_attend' =>"Other Attend",
+    'other_leave' =>"Other Leave",
 
     
 

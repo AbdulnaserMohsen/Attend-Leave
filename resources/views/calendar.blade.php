@@ -233,7 +233,8 @@
 				var section = "#page_section";
 				var contanier = "#page_container";
 				var year = $(".calendar-year p").html();
-				var datatosend = { year:year ,date:$("#current_date").data('date')};
+				var month = $("#month").data('month');
+				var datatosend = {year:year, month:month, date:$("#current_date").data('date')};
 				
 				var type = "GET";
 				var processData = true;
@@ -426,7 +427,7 @@
 				var year = $(".calendar-year p").html();
 				var month = $("#month").data('month');
 				//console.log(month);
-				var datatosend = { year:year,month:month ,date:$("#current_date").data('date')};
+				var datatosend = {year:year ,month:month ,date:$("#current_date").data('date')};
 				//console.log(datatosend);
 
 				var type = "GET";

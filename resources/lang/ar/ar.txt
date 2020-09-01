@@ -157,3 +157,7 @@
     'absense' =>"الغياب",
     'other_attend' =>"طرق حضور أخرى",
     'other_leave' =>"طرق إنصراف أخرى",
+
+//no_attend
+    'the_vacation' => 'يوم الاجازة',
+    'vaction_day' => 'لماذا أنت هنا! فاليوم :vacation_name',

@@ -66,6 +66,19 @@
 
 					          <div class="col-lg-6">
 					            <div class="box wow fadeInLeft" data-wow-delay="0.2s">
+					              <div class="icon"><i class="fa fa-bar-chart"></i></div>
+					              <h4 class="title counter">
+					              	<span class="js-number-counter">5</span>
+					              </h4>
+					              <h4 class="title"><a href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}">{{ __('admin.statistics') }}</a></h4>
+					              <p class="description"></p>
+					            </div>
+					          </div>
+
+					          @if(Auth::user()->type == 3)
+					          
+					          <div class="col-lg-6">
+					            <div class="box wow fadeInLeft" data-wow-delay="0.2s">
 					              <div class="icon"><i class="fa fa-cogs"></i></div>
 					              <h4 class="title counter">
 					              	<span class="js-number-counter">{{$admins_count}}</span>
@@ -85,19 +98,7 @@
 					              <p class="description"></p>
 					            </div>
 					          </div>
-
-					          <div class="col-lg-6">
-					            <div class="box wow fadeInLeft" data-wow-delay="0.2s">
-					              <div class="icon"><i class="fa fa-bar-chart"></i></div>
-					              <h4 class="title counter">
-					              	<span class="js-number-counter">5</span>
-					              </h4>
-					              <h4 class="title"><a href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}">{{ __('admin.statistics') }}</a></h4>
-					              <p class="description"></p>
-					            </div>
-					          </div>
-
-					          @if(Auth::user()->type == 3)
+					          
 					          <div class="col-lg-6">
 					            <div class="box wow fadeInRight" data-wow-delay="0.2s">
 					              <div class="icon"><i class="fa fa-magic"></i></div>

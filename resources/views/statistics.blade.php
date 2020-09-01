@@ -1,16 +1,29 @@
-@extends('layouts.admin_layout')
-@section('admin_css')
-	
-	<link href="{{ asset('css/jquery.listtopie.css') }}" rel="stylesheet">
+@extends(Route::current()->getName() == 'statictics' ? 'layouts.admin_layout' : 'layouts.all' )
+@section(Route::current()->getName() == 'statictics' ? 'admin_css' : 'headerCss')
+
+	@if(Route::current()->getName() != 'statictics')
+		@if(app()->getLocale()=="en" )
+	      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	   @else
+	      <link 
+	        rel="stylesheet"
+	        href="https://cdn.rtlcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	        integrity="sha384-cSfiDrYfMj9eYCidq//oGXEkMc0vuTxHXizrMOFAaPsLt1zoCUVnSsURN+nef1lj"
+	        crossorigin="anonymous">
+	   @endif
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css')}}">
+	@endif
+
 @endsection
 
-@section('main_admin')
+@section(Route::current()->getName() == 'statictics' ? 'main_admin' : 'content')
 
                   <!--==========================
 				      Services Section
 				    ============================-->
 				    <section id="services" >
-				      	<div class="container" id="page_container">
+				      	<div class="container " id="page_container">
+
 					        <div class="section-header">
 					          <h2>{{ __('admin.statistics') }}</h2>
 					        </div>
@@ -85,7 +98,11 @@
 						        	<div id="mytable_wrapper" class="dataTables_wrapper no-footer">
 						        		<div class="dataTables_length" >
 						        			<label>{{ __('admin.lenght') }}
+						        				@if(Route::current()->getName() == 'statictics')
 						        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url="{{route('statictics',['year'=>$year,'month'=>$month ,'worker_paginate'=> Cache::get('worker_paginate') ,'table_paginate'=> ':length' ] )}}">
+						        				@else
+						        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url="{{route('user_statictics',['year'=>$year,'month'=>$month ,'table_paginate'=> ':length' ] )}}">
+						        				@endif
 						        					<option @if($stat_user['ordinary']->perPage() == 10) selected disabled @endif value="10">10</option>
 						        					<option @if($stat_user['ordinary']->perPage() == 25) selected disabled @endif value="25">25</option>
 						        					<option @if($stat_user['ordinary']->perPage() == 31) selected disabled @endif value="31">31</option>
@@ -140,9 +157,15 @@
 										</table>
 
 										<div class="col-md-12 container">
-											<div class="col-md-10 d-flex justify-content-center pageint"  data-section="#table_section" data-contanier="#mytable_wrapper"> 
+											@if(Route::current()->getName() == 'statictics')
+												<div class="col-md-10 d-flex justify-content-center pageint"  data-section="#table_section" data-contanier="#mytable_wrapper"> 
 												{{ $stat_user['ordinary']->appends(['page' => $workers->currentPage(), 'table' => $stat_user['ordinary']->currentPage()])->links() }}
 											</div>
+											@else
+												<div class="col-md-10 d-flex justify-content-center pageint"  data-section="#table_section" data-contanier="#mytable_wrapper"> 
+												{{ $stat_user['ordinary']->links() }}
+											</div>
+											@endif
 										</div>	
 									</div>
 									<div class="clearfix"></div>
@@ -164,7 +187,7 @@
 		
 @endsection
 
-@section('admin_js')
+@section(Route::current()->getName() == 'statictics' ? 'admin_js' : 'footerJs')
 
 <script src="{{ asset('js/table.js') }}"></script>
 <script src="{{ asset('js/Chart.js') }}"></script>
@@ -182,70 +205,19 @@
 
 		var labels = ["{{ __('admin.absense') }}","{{ __('admin.attend&leave') }}"];
 		var statistics = {!! json_encode($statistics_of_users) !!};
-		//console.log(statistics);
-		
+		//console.log(statistics);		
 		
    		var absense = "{{ __('admin.absense') }}";
    		if($('html').attr('lang') == "ar")
    			var attend_leave = "الحضور والانصراف";
    		else
    			var attend_leave = "Attend & Leave ";
-
-   		var select_first = "{{ __('admin.select_first') }}";
-   		var delete_question_all = "{{ __('admin.delete_question_all') }}";
-   		var delete_hint = "{{ __('admin.delete_hint') }}";
-   		var delete_cancel = "{{ __('admin.delete_cancel') }}";
-   		var delete_ok = "{{ __('admin.delete_ok') }}";
-   		var deleted = "{{ __('admin.deleted') }}";
-   		var error_not_deleted = "{{ __('admin.error_not_deleted') }}";
-   		var error = "{{ __('admin.error') }}";
-   		var call_it = "{{ __('admin.call_it') }}";
-   		var data_safed = "{{ __('admin.data_safed') }}";
-   		var delete_question = "{{ __('admin.delete_question') }}";
-   		var not_authorized_delete = "{{ __('admin.not_authorized_delete') }}";
-   		var not_authorized_update = "{{ __('admin.not_authorized_update') }}";
-   		
+	
 	</script>
 <script src="{{ asset('js/chart drawing.js') }}"></script>
 
 
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
-<script src="{{ asset('js/jquery.listtopie.js') }}"></script>
 
-<script>
-	/*Example5*/
-	$('.rowtest4').listtopie({
-		  size:'auto',
-		  useMenu:true,
-		  strokeWidth:3,
-		  speedDraw:150,
-		  hoverEvent:false,
-		  sectorRotate:true,
-		  hoverBorderColor:'#6fe7dd',
-		  hoverWidth:2,
-		  textSize:'16',
-		  marginCenter:35,
-		  listVal:false,
-		  listValMouseOver: false,
-		  infoText:true,
-		  setValues:true,
-		  backColorOpacity: '0.5',
-		  hoverSectorColor:true,
-		  usePercent:false,
-		  textSize:'12'
-	});
-
-	$('.rowtest4').on('afterChange', function(event, listtopie){
-		  var idSector = listtopie.currentChangeSector;
-		  $( ".menu_title" ).css('display','none');
-		  $('.rowtest4').listtopie('hoverGoTo',idSector);
-		  $("#m" + idSector).fadeIn("slow");
-	});
-
-	/*example5*/
-
-</script>
-	
 @endsection
 

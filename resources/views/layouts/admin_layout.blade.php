@@ -50,13 +50,17 @@
                <a href="{{route('jobs',Cache::get('job_paginate') )}}"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-shopping-bag fa-stack-1x "></i></span>{{ __('admin.jobs') }}</a>
             </li>
 
+            
+            @if(Auth::user()->type == 3)
+            
             <li >
                <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-cogs fa-stack-1x "></i></span>{{ __('admin.admins') }}</a>
             </li>
+            
             <li >
                <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-eye fa-stack-1x "></i></span>{{ __('admin.monitors') }}</a>
             </li>
-            @if(Auth::user()->type == 3)
+
             <li >
                <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-magic fa-stack-1x "></i></span>{{ __('admin.super_admins') }}</a>
             </li>

@@ -30,6 +30,10 @@ return [
     'leave_from' => 'Leave time from :leave_from to :leave_to',
     'saved_as'=>'You successfully saved as : ',
 
+    //no_attend
+    'the_vacation' => 'It is The vacation',
+    'vaction_day' => 'Why you are here! It is the :vacation_name',
+
 
 
 

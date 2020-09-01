@@ -156,9 +156,9 @@ class AttendLeaveController extends Controller
                     return $key;
                 }); 
 
-            $ordinary = AttendLeave::whereHas('calendar', function($q)
+            $ordinary = AttendLeave::whereHas('calendar', function($q) use($year,$month)
             {
-                $q->whereYear('date','=',2020)->whereMonth('date','=',8);
+                $q->whereYear('date',$year)->whereMonth('date',$month);
             })->where('user_id',$worker->first()->user_id)->paginate($table_paginate,['*'],'table');
             
             //dd($other_leave);

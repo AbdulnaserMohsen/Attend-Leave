@@ -30,6 +30,9 @@ return [
     'leave_from' => 'وقت الانصراف من  :leave_from إلى :leave_to',
     'saved_as'=>'تم التسجيل بنجاح الحالة : ',
 
+    //no_attend
+    'the_vacation' => 'يوم الاجازة',
+    'vaction_day' => 'لماذا أنت هنا! فاليوم :vacation_name',
   
 
 

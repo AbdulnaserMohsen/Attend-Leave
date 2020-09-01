@@ -79,7 +79,7 @@ Route::post('/attend_leave/update_attend_leave/{id}', 'AttendLeaveController@upd
 //all user statictics
 Route::get('/year_months_statistics/{year}', 'AttendLeaveController@year_month_statistics')->name('year_month_statistics');
 Route::get('/attend_leave/statictics/{year}/{month}/{worker_paginate}/{table_paginate}', 'AttendLeaveController@statictics')->name('statictics');
-Route::get('/attend_leave/user_atted_all/{paginate}', 'UserStatusController@user_atted_all')->name('user_atted_all');
+
 
 
 

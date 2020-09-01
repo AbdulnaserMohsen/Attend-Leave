@@ -114,10 +114,10 @@
           @else
             <li @if(url()->current() == route('home')) class="menu-active" @endif ><a href="{{ route('home') }}">{{ __('admin.attend&leave') }} {{ __('admin.today') }} <i class="fa fa-calendar-check-o"></i></a></li>
 
-            <li ><a href="">{{ __('all.your_statistics') }} <i class="fa fa-bar-chart"></i></a></li>
+            <li ><a href="{{ route('user_year_months_statistics',\Carbon\Carbon::now()->year) }}">{{ __('all.your_statistics') }} <i class="fa fa-bar-chart"></i></a></li>
             @if(Auth::user()->type>0)
               
-              @if(url()->current() == route('index') || url()->current() == route('home') || url()->current() == route('profile'))
+              @if(url()->current() == route('index') || url()->current() == route('home') || url()->current() == route('profile') || Request::is('user_statictics/*') || Request::is('user_year_months_statistics/*') )
                 <li ><a href="{{ route('admin') }}">{{ __('all.admin') }} <i class="fa fa-cog"></i></a></li>
               @else
                 <li ><a href="{{ route('index') }}">{{ __('all.user') }} <i class="fa fa-user-o"></i></a></li>
