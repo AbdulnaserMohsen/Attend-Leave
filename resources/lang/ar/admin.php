@@ -14,6 +14,7 @@ return [
     'job' => 'الوظيفة ',
     'admins' => ' المتحكمين ',
     'monitors' => ' المراقبين ',
+    'super_admins' => 'المتحكمين الرئيسين ',
 
     'day_statuses' => ' حالات اليوم ',
     'day_status' => 'حالة اليوم',
@@ -95,6 +96,10 @@ return [
     'choose_year_month' =>"إختر السنة و الشهر",
     'years' =>"السنوات",
     'days' =>"أيام",
+
+    'absense' =>"الغياب",
+    'other_attend' =>"طرق حضور أخرى",
+    'other_leave' =>"طرق إنصراف أخرى",
 
 
 ];

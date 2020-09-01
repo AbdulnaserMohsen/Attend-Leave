@@ -247,6 +247,9 @@ class MainController extends Controller
         Cache::forever('attend_today_paginate', 10);
         Cache::forever('worker_paginate', 5);
         Cache::forever('table_paginate', 5);
+        Cache::forever('monitor_paginate', 10);
+        Cache::forever('admin_paginate', 10);
+        Cache::forever('super_admin_paginate', 10);
 
 
 

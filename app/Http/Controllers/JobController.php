@@ -30,7 +30,7 @@ class JobController extends Controller
     protected function validator(array $data)
     {
        return Validator::make($data, [
-            'job_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic}]+$/u'],
+            'job_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic} ]+$/u'],
             'job_en' => ['required', 'string', 'max:255' , 'regex:/^[a-zA-Z ]+$/u'],
         ]);
 

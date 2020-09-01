@@ -78,34 +78,34 @@
 					          @if(Auth::user()->type == 3)
 					          
 					          <div class="col-lg-6">
+					            <div class="box wow fadeInRight" data-wow-delay="0.2s">
+					              <div class="icon"><i class="fa fa-eye"></i></div>
+					              <h4 class="title counter">
+					              	<span class="js-number-counter">{{$monitors_count}}</span>
+					              </h4>
+					              <h4 class="title"><a href="{{route('monitors',Cache::get('monitor_paginate') )}}">{{ __('admin.monitors') }}</a></h4>
+					              <p class="description"></p>
+					            </div>
+					          </div>
+					          
+					          <div class="col-lg-6">
 					            <div class="box wow fadeInLeft" data-wow-delay="0.2s">
 					              <div class="icon"><i class="fa fa-cogs"></i></div>
 					              <h4 class="title counter">
 					              	<span class="js-number-counter">{{$admins_count}}</span>
 					              </h4>
-					              <h4 class="title"><a href="">{{ __('admin.admins') }}</a></h4>
+					              <h4 class="title"><a href="{{route('admins',Cache::get('admin_paginate') )}}">{{ __('admin.admins') }}</a></h4>
 					              <p class="description"></p>
 					            </div>
 					          </div>
 
 					          <div class="col-lg-6">
 					            <div class="box wow fadeInRight" data-wow-delay="0.2s">
-					              <div class="icon"><i class="fa fa-eye"></i></div>
-					              <h4 class="title counter">
-					              	<span class="js-number-counter">{{$monitors_count}}</span>
-					              </h4>
-					              <h4 class="title"><a href="">{{ __('admin.monitors') }}</a></h4>
-					              <p class="description"></p>
-					            </div>
-					          </div>
-					          
-					          <div class="col-lg-6">
-					            <div class="box wow fadeInRight" data-wow-delay="0.2s">
 					              <div class="icon"><i class="fa fa-magic"></i></div>
 					              <h4 class="title counter">
 					              	<span class="js-number-counter">{{$super_admins_count}}</span>
 					              </h4>
-					              <h4 class="title"><a href="">{{ __('admin.super_admins') }}</a></h4>
+					              <h4 class="title"><a href="{{route('super_admins',Cache::get('super_admin_paginate') )}}">{{ __('admin.super_admins') }}</a></h4>
 					              <p class="description"></p>
 					            </div>
 					          </div>

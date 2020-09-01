@@ -31,10 +31,11 @@ class AttendLeaveController extends Controller
     	}
 
         $current_date = $date;
-        $date = Calender::where('date',$current_date)->first();
+        $date = Calender::where('date',$current_date)->has('attend_leave')->first();
         if(!isset($date))
         {
-            dd("this day maybe vactation,or very past or not come");  
+            //dd("this day maybe vactation,or before the system work or not come"); 
+            return view('no_attend'); 
         }
 
         $attend_leaves = AttendLeave::where('calender_id',$date->id)->paginate($paginate);
@@ -173,10 +174,7 @@ class AttendLeaveController extends Controller
 
     }
 
-    public function user_atted_all(Request $request, $paginate)
-    {
-
-    }
+    
 
 
 }

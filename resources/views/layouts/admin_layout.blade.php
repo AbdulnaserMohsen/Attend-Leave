@@ -50,24 +50,24 @@
                <a href="{{route('jobs',Cache::get('job_paginate') )}}"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-shopping-bag fa-stack-1x "></i></span>{{ __('admin.jobs') }}</a>
             </li>
 
-            
-            @if(Auth::user()->type == 3)
-            
-            <li >
-               <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-cogs fa-stack-1x "></i></span>{{ __('admin.admins') }}</a>
-            </li>
-            
-            <li >
-               <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-eye fa-stack-1x "></i></span>{{ __('admin.monitors') }}</a>
-            </li>
-
-            <li >
-               <a href=""><span class="fa-stack fa-lg pull-left"><i class="fa fa-magic fa-stack-1x "></i></span>{{ __('admin.super_admins') }}</a>
-            </li>
-            @endif
             <li>
                <a href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>{{ __('admin.statistics') }}</a>
             </li>
+
+            @if(Auth::user()->type == 3)
+            
+            <li >
+               <a href="{{route('monitors',Cache::get('monitor_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-eye fa-stack-1x "></i></span>{{ __('admin.monitors') }}</a>
+            </li>
+
+            <li >
+               <a href="{{route('admins',Cache::get('admin_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cogs fa-stack-1x "></i></span>{{ __('admin.admins') }}</a>
+            </li>
+            
+            <li >
+               <a href="{{route('super_admins',Cache::get('super_admin_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-magic fa-stack-1x "></i></span>{{ __('admin.super_admins') }}</a>
+            </li>
+            @endif
            
          </ul>
       </div>

@@ -17,19 +17,21 @@
 				<section class="" id="add_section">
 					
 					<div class="" >
-				        <h2 class="forms_title">{{ __('admin.jobs') }}</h2>
+						<div class="section-header">
+				          <h2>{{ __('admin.jobs') }}</h2>
+				        </div>
 				        <form class="forms_form validate-form" id="job_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_job')}}" data-page="?page={{$jobs->currentPage()}}" >
 				          @csrf
 				          
 				          <fieldset class="forms_fieldset">
 				            <div class="forms_field validate-input @error('job_en') has-invalid alert-validate @enderror" data-validate="@error('job_en'){{ $message }} @else{{ __('admin.valid_job_en') }} @enderror" >
 				              <span> {{ __('admin.job_en') }}:</span>
-				              <input  type="text" placeholder="{{ __('admin.place_job_en') }}" class="forms_field-input2" name="job_en" value="{{ old('job_en') }}" required autocomplete="job_en" />
+				              <input  type="text" placeholder="{{ __('admin.place_job_en') }}" class="forms_field-input bigger" name="job_en" value="{{ old('job_en') }}" required autocomplete="job_en" />
 				            </div>
 
 							<div class="forms_field validate-input @error('job_ar') has-invalid alert-validate @enderror" data-validate="@error('job_ar'){{ $message }} @else{{ __('admin.valid_job_ar') }} @enderror" >
 				              <span> {{ __('admin.job_ar') }}:</span>
-				              <input  type="text" placeholder="{{ __('admin.place_job_ar') }}" class="forms_field-input2" name="job_ar" value="{{ old('job_ar') }}" required autocomplete="job_ar" />
+				              <input  type="text" placeholder="{{ __('admin.place_job_ar') }}" class="forms_field-input bigger" name="job_ar" value="{{ old('job_ar') }}" required autocomplete="job_ar" />
 				            </div>
 
 				          </fieldset>
@@ -148,12 +150,12 @@
 						          <fieldset class="forms_fieldset">
 						            <div class="forms_field validate-input @error('job_en') has-invalid alert-validate @enderror" data-validate="@error('job_en'){{ $message }} @else{{ __('admin.valid_job_en') }} @enderror" >
 						              <span> {{ __('admin.job_en') }}:</span>
-						              <input  type="text" placeholder="{{ __('admin.place_job_en') }}" class="forms_field-input2" name="job_en" value="{{$job->job_en}}" required autocomplete="job_en" />
+						              <input  type="text" placeholder="{{ __('admin.place_job_en') }}" class="forms_field-input bigger" name="job_en" value="{{$job->job_en}}" required autocomplete="job_en" />
 						            </div>
 
 									<div class="forms_field validate-input @error('job_ar') has-invalid alert-validate @enderror" data-validate="@error('job_ar'){{ $message }} @else{{ __('admin.valid_job_ar') }} @enderror" >
 						              <span> {{ __('admin.job_ar') }}:</span>
-						              <input  type="text" placeholder="{{ __('admin.place_job_ar') }}" class="forms_field-input2" name="job_ar" value="{{$job->job_ar}}" required autocomplete="job_ar" />
+						              <input  type="text" placeholder="{{ __('admin.place_job_ar') }}" class="forms_field-input bigger" name="job_ar" value="{{$job->job_ar}}" required autocomplete="job_ar" />
 						            </div>
 
 						          </fieldset>
@@ -161,7 +163,7 @@
 				      			</div>
 				          
 					          	<div class="modal-footer ">
-					        		<button type="submit" class="forms_buttons-action"  style="width: 100%;" >{{ __('admin.update') }} <i class="fa fa-check-circle"></i></button>
+					        		<button type="submit" class="forms_buttons-action bigger"  style="width: 100%;" >{{ __('admin.update') }} <i class="fa fa-check-circle"></i></button>
 					      		</div>
 				      		</form>
 				        </div>

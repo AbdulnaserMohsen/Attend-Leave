@@ -161,3 +161,7 @@
 //no_attend
     'the_vacation' => 'يوم الاجازة',
     'vaction_day' => 'لماذا أنت هنا! فاليوم :vacation_name',
+
+//no_attendence
+    'no_attendence_day' => 'هذا اليوم ليس به حضور أو إنصراف',
+    'reason_no_attendence' => 'هذا اليوم ربما يكون اجازة أو قبل بدء العمل بالموقع(النظام) أو لم ياتي بعد',

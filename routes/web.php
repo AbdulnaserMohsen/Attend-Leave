@@ -85,6 +85,23 @@ Route::get('/attend_leave/statictics/{year}/{month}/{worker_paginate}/{table_pag
 
 });
 
+Route::middleware(['SuperAdmin'])->group(function () 
+{
+	//monitors
+	Route::get('/monitors/{paginate}', 'SuperAdminController@monitors')->name('monitors');
+	//admins
+	Route::get('/admins/{paginate}', 'SuperAdminController@admins')->name('admins');
+	//super admins
+	Route::get('/super_admins/{paginate}', 'SuperAdminController@super_admins')->name('super_admins');
+	
+
+	//update delete delete all
+	Route::post('/update_special/{id}', 'SuperAdminController@update_special')->name('update_special');
+	Route::get('/delete_special/{id}', 'SuperAdminController@delete_special')->name('delete_special');
+	Route::get('/delete_all_specials/{ids}', 'SuperAdminController@delete_all_specials')->name('delete_all_specials');
+
+});
+
 
 
 

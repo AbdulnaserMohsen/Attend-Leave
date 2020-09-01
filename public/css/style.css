@@ -110,8 +110,12 @@ h6 {
 }
 
 #topbar .contact-info i {
-  color:var(--main-color);
+  color:var(--second-color);
   padding: 4px;
+}
+
+#topbar .contact-info i:hover {
+  color: var(--main-color);
 }
 
 [dir ='ltr'] #topbar .contact-info .fa-phone {
@@ -132,6 +136,7 @@ h6 {
   line-height: 1px;
 
 }
+
 [dir ='ltr'] #topbar .social-links a {
   border-left: 1px solid #e9e9e9;
 }
@@ -148,6 +153,9 @@ h6 {
 }
 [dir ='rtl'] #topbar .social-links a:first-child {
   border-right: 0;
+}
+#topbar .social-links a i {
+  color: var(--main-color);
 }
 
 /*--------------------------------------------------------------
@@ -290,11 +298,11 @@ h6 {
 /* Nav Meu Styling */
 
 .nav-menu a {
-  padding: 10px 8px;
+  padding: 4px 4px;
   text-decoration: none;
   display: inline-block;
   color: #555;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Reem Kufi', sans-serif;
   font-weight: 700;
   font-size: 14px;
   outline: none;
@@ -325,6 +333,7 @@ h6 {
 .nav-menu ul li {
   transition: 0.3s;
 }
+
 
 .nav-menu ul li a {
   padding: 10px;
@@ -507,6 +516,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-weight: 700;
   position: relative;
   padding-bottom: 20px;
+  font-family: 'Reem Kufi', sans-serif;
 }
 
 .section-header h2::before {
@@ -764,6 +774,21 @@ body.mobile-nav-active #mobile-nav-toggle {
   #topbar {
 	display:block !important;
   }
+	.nav-menu a {
+	  padding: 4px 5px;
+	  font-family: 'Reem Kufi', sans-serif;
+	  font-weight: 700;
+	  font-size: 13px;
+	}
+	.nav-menu ul li {
+	  min-width: 100px;
+	}
+	.nav-menu ul li a {
+	  
+	  font-size: 13px;
+	}
+	
+  
 }
 
 @media (max-width: 768px) {
@@ -774,8 +799,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 	display:block !important;
   }
   #header {
-    padding: 20px 0;
-    height: 74px;
+    padding: 10px 0;
+    height: 100px;
   }
 
   #header #logo h1 {
@@ -783,17 +808,31 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 
   #header #logo img {
-    max-height: 40px;
+    max-height: 65px;
   }
 
   #nav-menu-container {
     /*display: none;*/
 	display: inline;
   }
-
+	
   /*#mobile-nav-toggle {
     display: inline;
   }*/
+  
+  .nav-menu a {
+	  padding: 3px 3px;
+	  font-family: 'Reem Kufi', sans-serif;
+	  font-weight: 700;
+	  font-size: 11px;
+	}
+	.nav-menu ul li {
+	  min-width: 80px;
+	}
+	.nav-menu ul li a {
+	  
+	  font-size: 11px;
+	}
 
 }
 
@@ -823,3 +862,95 @@ body.mobile-nav-active #mobile-nav-toggle {
   
 }
 
+@media (max-width: 600px) {
+	
+	#header {
+    padding: 1px 0;
+    height: 100px;
+  }
+
+  #header #logo h1 {
+    font-size: 14px;
+  }
+
+  #header #logo img {
+    max-height: 55px;
+  }
+  
+	.nav-menu a {
+	  padding: 3px 3px;
+	  font-family: 'Reem Kufi', sans-serif;
+	  font-weight: 700;
+	  font-size: 11px;
+	}
+	.nav-menu ul li {
+	  min-width: 80px;
+	}
+	.nav-menu ul li a {
+	  
+	  font-size: 11px;
+	}
+  
+}
+
+@media (max-width: 450px) {
+	
+	#header {
+    padding: 1px 0;
+    height: 90px;
+  }
+
+  #header #logo h1 {
+    font-size: 14px;
+  }
+
+  #header #logo img {
+    max-height: 45px;
+  }
+  
+	.nav-menu a {
+	  padding: 2px 2px;
+	  font-family: 'Reem Kufi', sans-serif;
+	  font-weight: 700;
+	  font-size: 10px;
+	}
+	.nav-menu ul li {
+	  min-width: 80px;
+	}
+	.nav-menu ul li a {
+	  
+	  font-size: 10px;
+	}
+  
+}
+
+@media (max-width: 350px) {
+	
+	#header {
+    padding: 1px 0;
+    height: 80px;
+  }
+
+  #header #logo h1 {
+    font-size: 14px;
+  }
+
+  #header #logo img {
+    max-height: 35px;
+  }
+  
+	.nav-menu a {
+	  padding: 1px 1px;
+	  font-family: 'Reem Kufi', sans-serif;
+	  font-weight: 700;
+	  font-size: 10px;
+	}
+	.nav-menu ul li {
+	  min-width: 80px;
+	}
+	.nav-menu ul li a {
+	  
+	  font-size: 10px;
+	}
+  
+}

@@ -50,9 +50,8 @@
   ============================-->
   <section id="topbar" class="d-none d-lg-block">
     <div class="container clearfix">
-      <div class="contact-info float-left">
-        <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@example.com</a>
-        <i class="fa fa-phone"></i> +1 5589 55488 55
+      <div class="contact-info  float-left">
+        
       </div>
       <div class="social-links float-right">
         @if(app()->getLocale()=="en" )
@@ -60,7 +59,6 @@
         @else
         <a href="{{ url('lang/en') }}" class="twitter"><i class="fa fa-language"></i> {{ __('all.language') }} </a>
         @endif
-        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
       </div>
     </div>
   </section>
@@ -71,7 +69,7 @@
   <header id="header">
     <div class="container">
 
-      <div id="logo" @if(app()->getLocale()=="en" ) class="pull-left"  @else class="pull-right" @endif>
+      <div id="logo"  class="float-left"  >
         <!-- <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
         @if(url()->current() == route('index'))

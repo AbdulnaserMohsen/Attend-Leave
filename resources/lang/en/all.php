@@ -34,6 +34,10 @@ return [
     'the_vacation' => 'It is The vacation',
     'vaction_day' => 'Why you are here! It is the :vacation_name',
 
+    //no_attendence
+    'no_attendence_day' => 'This day has no attendence',
+    'reason_no_attendence' => 'This day maybe vactation or before the system work or not come',
+
 
 
 

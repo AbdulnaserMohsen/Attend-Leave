@@ -18,7 +18,7 @@
 					
 					<div class="" >
 						<div class="section-header">
-				          <h2>{{ __('admin.users') }}</h2>
+				          <h2>{{ $title }}</h2>
 				        </div>
 				        <form class="forms_form validate-form" id="user_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('register')}}" data-page="?page={{$users->currentPage()}}" >
 				          @csrf
@@ -86,7 +86,7 @@
 		        	<div id="mytable_wrapper" class="dataTables_wrapper no-footer">
 		        		<div class="dataTables_length" >
 		        			<label>{{ __('admin.lenght') }}
-		        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url='{{ route("users", ":length") }}'>
+		        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url='{{ route("$url_name", ":length") }}'>
 		        					<option @if($users->perPage() == 10) selected disabled @endif value="10">10</option>
 		        					<option @if($users->perPage() == 25) selected disabled @endif value="25">25</option>
 		        					<option @if($users->perPage() == 50) selected disabled @endif value="50">50</option>
@@ -144,7 +144,7 @@
 										@endif
 									@endif
 								    <td>
-								    	<button class="btn btn-danger btn-xs" name="delete" data-section="#page_section" data-contanier="#page_container" data-url="{{route('delete_user',$user->id)}}" data-page="?page={{$page}}"><span class="glyphicon glyphicon-trash"></span> {{ __('admin.delete') }}</button>
+								    	<button class="btn btn-danger btn-xs" name="delete" data-section="#page_section" data-contanier="#page_container" data-url="{{route('delete_special',$user->id)}}" data-page="?page={{$page}}"><span class="glyphicon glyphicon-trash"></span> {{ __('admin.delete') }}</button>
 								    </td>
 								    <td>
 								    	<div class="onoffswitch">
@@ -174,7 +174,7 @@
 							</div>
 							
 							<div class="col-md-2 ">
-								<button class="btn btn-danger btn-xs" id="delete_all" data-section="#page_section" data-contanier="#page_container"  data-page="?page={{$users->currentPage()}}" data-url="{{route('delete_all_users',':ids')}}" data-count="{{$users->count()}}">
+								<button class="btn btn-danger btn-xs" id="delete_all" data-section="#page_section" data-contanier="#page_container"  data-page="?page={{$users->currentPage()}}" data-url="{{route('delete_all_specials',':ids')}}" data-count="{{$users->count()}}">
 									<span class="glyphicon glyphicon-trash"></span>
 									{{ __('admin.delete_all') }}
 								</button>
@@ -204,7 +204,7 @@
 						    @csrf
 					      		<div class="modal-body">
 					      	   
-						          <h2 class="forms_title">{{ __('admin.edit') }} {{ __('admin.user') }}</h2>
+						          <h2 class="forms_title">{{ __('admin.edit') }} {{ $title }}</h2>
 						          <fieldset class="forms_fieldset">
 						            
 						            <div class="forms_field validate-input @error('name_ar') has-invalid alert-validate @enderror" data-validate="@error('name_ar'){{ $message }} @else{{ __('loginRegister.valid_name_ar') }} @enderror">
@@ -257,7 +257,7 @@
 					      		</div>
 				      		</form>
 				      		@else
-				      		<form class="forms_form validate-form" id="user_form_update_{{$loop->iteration}}"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('update_user',$user->id)}}" data-page="?page={{$users->currentPage()}}">
+				      		<form class="forms_form validate-form" id="user_form_update_{{$loop->iteration}}"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('update_special',$user->id)}}" data-page="?page={{$users->currentPage()}}">
 						    @csrf
 					      		<div class="modal-body">
 					      	   

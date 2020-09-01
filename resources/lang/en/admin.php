@@ -14,6 +14,7 @@ return [
     'job' => 'job',
     'admins' => 'Admins',
     'monitors' => 'Monitors',
+    'super_admins' => 'Super Admins',
 
     'day_statuses' => 'Day Statuses',
     'day_status' => 'Day Status',
