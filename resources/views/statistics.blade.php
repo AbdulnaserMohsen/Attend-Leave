@@ -9,8 +9,8 @@
                   <!--==========================
 				      Services Section
 				    ============================-->
-				    <section id="services">
-				      	<div class="container">
+				    <section id="services" >
+				      	<div class="container" id="page_container">
 					        <div class="section-header">
 					          <h2>{{ __('admin.statistics') }}</h2>
 					        </div>
@@ -46,7 +46,7 @@
 											  <div class="card-body">
 											  	@if(isset($stat_user['other_attend']))
 												  	@foreach($stat_user['other_attend'] as $key => $value)
-												    	<h5 class="card-title ">{{$key}} :<span class="js-number-counter">{{$value}}</span></h5>
+												    	<h5 class="card-title ">{{$key}} :<span class="js-number-counter">{{$value}}</span></h5>	
 												    @endforeach
 											    @endif
 											  </div>
@@ -85,7 +85,7 @@
 						        	<div id="mytable_wrapper" class="dataTables_wrapper no-footer">
 						        		<div class="dataTables_length" >
 						        			<label>{{ __('admin.lenght') }}
-						        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url='{{ route("jobs", ":length") }}'>
+						        				<select id="mytable_length" name="mytable_length" aria-controls="mytable" class="classic" data-url="{{route('statictics',['year'=>$year,'month'=>$month ,'worker_paginate'=> Cache::get('worker_paginate') ,'table_paginate'=> ':length' ] )}}">
 						        					<option @if($stat_user['ordinary']->perPage() == 10) selected disabled @endif value="10">10</option>
 						        					<option @if($stat_user['ordinary']->perPage() == 25) selected disabled @endif value="25">25</option>
 						        					<option @if($stat_user['ordinary']->perPage() == 31) selected disabled @endif value="31">31</option>
@@ -110,8 +110,8 @@
 							                   <th><input type="checkbox" id="checkall" /></th>
 							                   <th>#</th>
 							                   <th>{{ __('admin.date') }}</th>
-							                   <th>{{ __('admin.attend') }}</th>
-							                   <th>{{ __('admin.leave') }}</th>
+							                   <th>{{ __('all.attend') }}</th>
+							                   <th>{{ __('all.leave') }}</th>
 							                
 							                </thead>
 											    
@@ -140,8 +140,8 @@
 										</table>
 
 										<div class="col-md-12 container">
-											<div class="col-md-10 d-flex justify-content-center pageint"  data-section="#page_section" data-contanier="#page_container"> 
-												{{ $stat_user['ordinary']->links() }} 
+											<div class="col-md-10 d-flex justify-content-center pageint"  data-section="#table_section" data-contanier="#mytable_wrapper"> 
+												{{ $stat_user['ordinary']->appends(['page' => $workers->currentPage(), 'table' => $stat_user['ordinary']->currentPage()])->links() }}
 											</div>
 										</div>	
 									</div>
@@ -149,10 +149,11 @@
 								</div>
 						        @endforeach
 						    
-
-						    <div class="col-md-10 d-flex justify-content-center pageint"  data-section="#page_section" data-contanier="#page_container"> 
+						    @if(Route::current()->getName() == 'statictics')
+						    <div class="col-md-10 d-flex justify-content-center pageint2"  data-section="#services" data-contanier="#page_container"> 
 								{{ $workers->links() }} 
 							</div>
+							@endif
 
 					        
 				      	</div>
@@ -165,12 +166,23 @@
 
 @section('admin_js')
 
+<script src="{{ asset('js/table.js') }}"></script>
 <script src="{{ asset('js/Chart.js') }}"></script>
 <script>
 
+	$(document).on('click','.pageint2 .pagination a', function(event)
+	{
+		event.preventDefault();
+
+		var page = $(this).attr('href');
+		window.location.href = page;
+	});
+
+		
+
 		var labels = ["{{ __('admin.absense') }}","{{ __('admin.attend&leave') }}"];
 		var statistics = {!! json_encode($statistics_of_users) !!};
-		console.log(statistics);
+		//console.log(statistics);
 		
 		
    		var absense = "{{ __('admin.absense') }}";

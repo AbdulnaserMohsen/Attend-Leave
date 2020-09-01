@@ -1,17 +1,11 @@
-
-@extends(Route::current()->getName() == 'year_month_statistics' ? 'layouts.admin_layout' : 'layouts.all')
-
-@section(Route::current()->getName() == 'year_month_statistics' ? 'admin_css' : 'headerCss' )
+@extends('layouts.admin_layout')
+@section('admin_css')
 	
-	<link rel="stylesheet" type="text/css" href="{{ asset('css/admin.css')}}">
 
 @endsection
 
-@section(Route::current()->getName() == 'year_month_statistics' ? 'main_admin' : 'content')
-				
-				@if(Route::current()->getName() != 'year_month_statistics')
-				<div class="container">
-				@endif
+@section('main_admin')
+
                   <!--==========================
 				      Services Section
 				    ============================-->
@@ -41,13 +35,8 @@
 					              <h4 class="title counter">
 					              	<span> <span class="js-number-counter">{{$month_counter}}</span> {{ __('admin.days') }}</span>
 					              </h4>
-					              @if(Route::current()->getName() == 'year_month_statistics')
-					              	<h4 class="title"><a href="{{route('statictics',['year'=>$year,'month'=>\Carbon\Carbon::parseFromLocale($month)->month,'worker_paginate'=> Cache::get('worker_paginate') ,'table_paginate'=> Cache::get('table_paginate') ] )}}">{{$month}}</a></h4>
-					              @else
-					              	<h4 class="title"><a href="{{route('user_statictics',['year'=>$year,'month'=>\Carbon\Carbon::parseFromLocale($month)->month,'table_paginate'=> Cache::get('table_paginate') ] )}}">{{$month}}</a></h4>
-					              @endif
+					              <h4 class="title"><a href="{{route('statictics',['year'=>$year,'month'=>\Carbon\Carbon::parseFromLocale($month)->month,'worker_paginate'=> Cache::get('worker_paginate') ,'table_paginate'=> Cache::get('table_paginate') ] )}}">{{$month}}</a></h4>
 					              <p class="description"></p>
-					              
 					            </div>
 					          </div>
 					          @endforeach
@@ -56,15 +45,12 @@
 				      	</div>
 				    </section>
 				    <!-- #services -->
-				@if(Route::current()->getName() != 'year_month_statistics')
-				</div>
-				@endif
 
 		
 		
 @endsection
 
-@section(Route::current()->getName() == 'year_month_statistics' ? 'admin_js' : 'footerJs')
+@section('admin_js')
 
 <script >
 	

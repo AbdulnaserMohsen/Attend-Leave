@@ -153,3 +153,7 @@
     'years' =>"السنوات",
     'days' =>"أيام",
     'change' =>"Change",
+
+    'absense' =>"الغياب",
+    'other_attend' =>"طرق حضور أخرى",
+    'other_leave' =>"طرق إنصراف أخرى",

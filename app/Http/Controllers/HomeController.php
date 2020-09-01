@@ -13,6 +13,7 @@ use App\UserStatus;
 use App\Job;
 use Auth;
 use App\User;
+use Cache;
 
 class HomeController extends Controller
 {
@@ -192,6 +193,90 @@ class HomeController extends Controller
         $user->user_name = $request->get('user_name');
         $user->save();
         return response()->json(['success'=>__('admin.saved')]);
+    }
+
+    public function user_year_months_statistics( $year, Request $request)
+    {
+        
+        $years = Calender::where('user_id',Auth::id())->has('attend_leave')->pluck('date') ->countBy(function($val) 
+            {
+                return Carbon::parse($val)->format('Y') ;
+            }) ;
+
+        $months = Calender::has('attend_leave')->whereYear('date',$year)->pluck('date') ->countBy(function($val) 
+            {
+                return Carbon::parse($val)->monthName ;
+            }) ;
+
+
+        return view('year_month_statistics',compact('year','years','months'));
+        
+
+    }
+
+
+    public function user_statictics(Request $request , $year , $month , $table_paginate)
+    {
+        
+        if ($table_paginate <= 0) 
+        {
+            $table_paginate = Cache::get('table_paginate', function() { return 5; });
+        }
+        else
+        {
+            Cache::forever('table_paginate', $table_paginate);
+        }
+
+        $attend_leaves = AttendLeave::whereHas('calendar', function($q) use($year,$month)
+            {
+                $q->whereYear('date','=',$year)->whereMonth('date','=',$month);
+            })->where('user_id',Auth::id())->orderBy('user_id')->get();
+        
+        $workers = $attend_leaves->groupBy('user_id');
+        //$workers = $workers->paginate($worker_paginate);
+        $statistics_of_users =collect();
+        foreach ($workers as $key => $worker) 
+        {
+            if(App::isLocale('ar')){$name = $worker->first()->user->name_ar;}
+            else {$name = $worker->first()->user->name_en;}
+            
+            $absence_counter = $worker->filter( function($worker) 
+                {
+                    return strstr($worker->attend_user_status_id, "3") ||
+                           strstr($worker->leave_user_status_id, "3");
+                })->count();
+
+            $attend_leave_counter = $worker->where("attend_user_status_id",1)->where("leave_user_status_id",2)->count();
+
+            $other_attend = $worker->whereNotIn("attend_user_status_id",[1,3])->whereNotIn("leave_user_status_id",[3])->countBy("attend_user_status_id")->keyBy(function ($item, $key)
+                {
+                    if(App::isLocale('ar')){$key = UserStatus::where('id',$key)->first()->name_ar;}
+                    else {$key = UserStatus::where('id',$key)->first()->name_en;}
+                    return $key;
+                }); 
+
+            $other_leave = $worker->whereNotIn("leave_user_status_id",[2,3])->whereNotIn("attend_user_status_id",[3])->countBy('leave_user_status_id')->keyBy(function ($item, $key)
+                {
+                    if(App::isLocale('ar')){$key = UserStatus::where('id',$key)->first()->name_ar;}
+                    else {$key = UserStatus::where('id',$key)->first()->name_en;}
+                    return $key;
+                }); 
+
+            $ordinary = AttendLeave::whereHas('calendar', function($q)
+            {
+                $q->whereYear('date','=',2020)->whereMonth('date','=',8);
+            })->where('user_id',$worker->first()->user_id)->paginate($table_paginate,['*'],'table');
+            
+            //dd($other_leave);
+            
+            $statistics_of_users[$key] = (["name" => $name , "attend_leave_counter" => $attend_leave_counter ,"absence_counter" => $absence_counter , "other_attend" => $other_attend ,"other_leave" => $other_leave,"ordinary"=>$ordinary]);
+        
+        }
+
+        //dd($attend_leaves,$statistics_of_users,$workers );
+
+        return view('statistics',compact('statistics_of_users','workers','year','month','table_paginate'));
+
     }
 
 }

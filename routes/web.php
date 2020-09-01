@@ -100,6 +100,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/user_attend', 'HomeController@user_attend')->name('user_attend');
 Route::post('/user_leave', 'HomeController@user_leave')->name('user_leave');
 
+//statistics
+Route::get('/user_year_months_statistics/{year}', 'HomeController@user_year_months_statistics')->name('user_year_months_statistics');
+Route::get('/user_statictics/{year}/{month}/{table_paginate}', 'HomeController@user_statictics')->name('user_statictics');
 
 });
 Auth::routes();
