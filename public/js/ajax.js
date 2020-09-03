@@ -51,7 +51,7 @@ $(document).ready(function()
 		response = ajax(type,url,processData,contentType,formData,section,link,contanier);
 
 
-		if(response.hasOwnProperty("success") )
+		if(response.hasOwnProperty("success") && !response.hasOwnProperty("responseJSON") )
 		{
 			console.log(response);
 			swal(response.success, 

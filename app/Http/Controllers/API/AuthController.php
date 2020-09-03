@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use Carbon\Carbon;
 use App\rules\Email_Username;
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -21,34 +22,32 @@ class AuthController extends Controller
    	/**
      * Create user
      *
-     * @param  [string] name
-     * @param  [string] email
-     * @param  [string] password
-     * @param  [string] password_confirmation
+     * @param  [string] name_ar
+     * @param  [string] name_en
+     * @param  [int] slct
+     * @param  [string] user_name_register
+     * @param  [string] password_register
+     * @param  [string] password_register_confirmation
      * @return [string] message
      */
-   	protected function validator(array $data)
+   	
+
+    public function register(Request $request)
     {
-       return Validator::make($data, [
+        $validator = Validator::make($request->all(), [ 
             'name_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic} ]+$/u'],
             'name_en' => ['required', 'string', 'max:255' , 'regex:/^[a-zA-Z ]+$/u'],
             'slct' => ['required','exists:jobs,id'],
             'user_name_register' => ['required', 'string', 'max:255', 'unique:users,user_name', new Email_Username ],
             'password_register' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-    }
-
-    public function register(Request $request)
-    {
-        $validator = $this->validator($request->all());
-
-        if ($validator->fails()) 
-        { 
+		if ($validator->fails()) 
+		{ 
             return response()->json(['error'=>$validator->errors()], 401); 
         }
         
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
+        //$input['password_register'] = bcrypt($input['password_register']);
         $user = User::create([
             'name_ar' => $input['name_ar'],
             'name_en' => $input['name_en'],
@@ -66,7 +65,7 @@ class AuthController extends Controller
     /**
      * Login user and create token
      *
-     * @param  [string] email
+     * @param  [string] user_name
      * @param  [string] password
      * @param  [boolean] remember_me
      * @return [string] access_token
@@ -121,7 +120,7 @@ class AuthController extends Controller
   
     /**
      * Logout user (Revoke the token)
-     *
+     * @authorization  [Bearer ] Access Token
      * @return [string] message
      */
     public function logout(Request $request)
@@ -135,6 +134,7 @@ class AuthController extends Controller
     /**
      * Get the authenticated User
      *
+     * @authorization  [Bearer ] Access Token
      * @return [json] user object
      */
     public function user(Request $request)
@@ -142,5 +142,76 @@ class AuthController extends Controller
         return response()->json($request->user());
     }
 
+
+    /**
+     * update user profile
+     *
+     * @param  [string] name_ar
+     * @param  [string] name_en
+     * @param  [int] slct
+     * @param  [string] user_name_register
+     * @return [string] message
+     */
+    public function update_profile(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'name_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic} ]+$/u'],
+            'name_en' => ['required', 'string', 'max:255' , 'regex:/^[a-zA-Z ]+$/u'],
+            'slct' => ['required','exists:jobs,id'],
+            'user_name_register' => ['required', 'string', 'max:255', 'unique:users,user_name,'.$request->user()->id.',id', new Email_Username ],
+        ]);
+		if ($validator->fails()) 
+		{ 
+            return response()->json(['error'=>$validator->errors()], 401); 
+        }
+        
+        $input = $request->all();
+
+        $user = User::where('id', $request->user()->id)->update([
+            'name_ar' => $input['name_ar'],
+            'name_en' => $input['name_en'],
+            'job_id' => $input['slct'],
+            'type' => 0,
+            'reset_pass'=>0,
+            'disable_account'=>0,
+            'user_name' => $input['user_name_register'],
+        ]);
+
+        return response()->json(['message' => 'Successfully updated user!'], 201);
+    }
+
+
+    /**
+     * update password and logout
+     *
+     * @param  [string] current_password
+     * @param  [string] new_password
+     * @param  [string] new_password_confirmation
+     * @return [string] message
+     */
+    public function update_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'current_password' => ['required', 'password'],
+            'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+		if ($validator->fails()) 
+		{ 
+            return response()->json(['error'=>$validator->errors()], 401); 
+        }
+        
+        $input = $request->all();
+        //$input['new_password'] = bcrypt($input['new_password']);
+
+        $user = User::where('id', $request->user()->id)->update(
+        	[
+        		'password'=> Hash::make($input['new_password']),
+        		'reset_pass' => 0,
+        	]);
+
+        $request->user()->token()->revoke(); 
+
+        return response()->json(['message' => 'Successfully updated password!'], 201);
+    }
 
 }

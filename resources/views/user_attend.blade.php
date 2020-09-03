@@ -58,13 +58,11 @@
                         <select name="slct">
                           <option  disabled  >{{ __('all.choose_your_status') }}</option>
                           
-                          @foreach($user_statuses as $user_status)
                             @if(app()->getLocale()=="ar" )
-                              <option @if($user_status->id==1 ) selected @endif  value="{{$user_status->id}}">{{$user_status->name_ar}}</option>
+                              <option selected value="{{$user_statuses[0]->id}}">{{$user_statuses[0]->name_ar}}</option>
                             @else
-                              <option @if($user_status->id==1 ) selected @endif  value="{{$user_status->id}}">{{$user_status->name_en}}</option>
+                              <option selected value="{{$user_statuses[0]->id}}">{{$user_statuses[0]->name_en}}</option>
                             @endif
-                          @endforeach
                         </select>
                       </div>
                     </div>
@@ -126,13 +124,11 @@
                       <select name="slct">
                         <option disabled  >{{ __('all.choose_your_status') }}</option>
                         
-                        @foreach($user_statuses as $user_status)
-                          @if(app()->getLocale()=="ar" )
-                            <option @if($user_status->id==2 ) selected @endif  value="{{$user_status->id}}">{{$user_status->name_ar}}</option>
-                          @else
-                            <option @if($user_status->id==2 ) selected @endif  value="{{$user_status->id}}">{{$user_status->name_en}}</option>
-                          @endif
-                        @endforeach
+                        @if(app()->getLocale()=="ar" )
+                          <option selected value="{{$user_statuses[0]->id}}">{{$user_statuses[0]->name_ar}}</option>
+                        @else
+                          <option selected value="{{$user_statuses[0]->id}}">{{$user_statuses[0]->name_en}}</option>
+                        @endif
                       </select>
                     </div>
                   </div>
