@@ -96,6 +96,16 @@ Route::middleware(['Admin'])->group(function ()
 	//attendLeave today & history
 	Route::post('/attend_leave/update_attend_leave/{id}', 'AttendLeaveController@update_attend_leave')->name('update_attend_leave');
 
+	//content
+	Route::get('/content', 'MainController@content')->name('content');
+	Route::get('/content/home', 'MainController@home')->name('home_content');
+	Route::get('/content/services', 'MainController@services')->name('services');
+	Route::post('/add_update_home', 'MainController@add_update_home')->name('add_update_home');
+	Route::post('/add_service', 'MainController@add_service')->name('add_service');
+	Route::post('/update_service', 'MainController@update_service')->name('update_service');
+	Route::get('/delete_service/{id}/{model}', 'MainController@delete_service')->name('delete_service');
+	Route::get('/delete_all_services/{ids}', 'MainController@delete_all_services')->name('delete_all_services');
+
 });
 
 

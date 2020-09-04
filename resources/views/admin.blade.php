@@ -75,6 +75,17 @@
 					            </div>
 					          </div>
 
+					          <div class="col-lg-6">
+					            <div class="box wow fadeInLeft" data-wow-delay="0.2s">
+					              <div class="icon"><i class="fa fa-pencil-square-o"></i></div>
+					              <h4 class="title counter">
+					              	<span class="js-number-counter">5</span>
+					              </h4>
+					              <h4 class="title"><a href="{{route('content')}}">{{ __('admin.content') }}</a></h4>
+					              <p class="description"></p>
+					            </div>
+					          </div>
+
 					          @if(Auth::user()->type == 3)
 					          
 					          <div class="col-lg-6">

@@ -25,7 +25,9 @@
 				<section class="" id="add_section">
 					
 					<div class="" >
-				        <h2 class="forms_title">{{ __('admin.weekends') }}</h2>
+						<div class="section-header ">
+				          <h2>{{ __('admin.weekends') }}</h2>
+				        </div>
 				        <fieldset class="forms_fieldset">
 				          	<div class=" forms_field "  >
 				            	<div class="">
@@ -55,19 +57,21 @@
 				    </div>
 
 					<div class="" >
-				        <h2 class="forms_title">{{ __('admin.day_statuses') }} {{ __('admin.work_vacation') }}</h2>
+						<div class="section-header ">
+				          <h2>{{ __('admin.day_statuses') }} {{ __('admin.work_vacation') }}</h2>
+				        </div>
 				        <form class="forms_form validate-form" id="day_status_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_day_status')}}" data-page="?page={{$day_statuses->currentPage()}}" >
 				          @csrf
 				          
 				          <fieldset class="forms_fieldset">
 				            
 				            <div class="forms_field validate-input @error('name_ar') has-invalid alert-validate @enderror" data-validate="@error('name_ar'){{ $message }} @else{{ __('loginRegister.valid_name_ar') }} @enderror">
-				              <span><i class="fa fa-address-book-o"></i> {{ __('loginRegister.name_ar') }}:</span>
+				              <span><i class="fa fa-pencil"></i> {{ __('loginRegister.name_ar') }}:</span>
 				              <input type="text" placeholder="{{ __('loginRegister.place_name_ar') }}" class="forms_field-input bigger" name="name_ar" value="{{ old('name_ar') }}" required autocomplete="name_ar" autofocus />
 				            </div>
 				            
 				            <div class="forms_field validate-input @error('valid_name_en') has-invalid alert-validate @enderror" data-validate="@error('name_en'){{ $message }} @else{{ __('loginRegister.valid_name_en') }} @enderror">
-				              <span><i class="fa fa-address-book-o"></i> {{ __('loginRegister.name_en') }}:</span>
+				              <span><i class="fa fa-pencil"></i> {{ __('loginRegister.name_en') }}:</span>
 				              <input type="text" placeholder="{{ __('loginRegister.place_name_en') }}" class="forms_field-input bigger" name="name_en" value="{{ old('name_en') }}" required autocomplete="name_en" />
 				            </div>
 

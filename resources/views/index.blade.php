@@ -10,7 +10,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 about-img">
-            <img src="img/logo.png" alt="">
+            <img src="img/default_logo.png" alt="">
           </div>
 
           <div class="col-lg-6 content">

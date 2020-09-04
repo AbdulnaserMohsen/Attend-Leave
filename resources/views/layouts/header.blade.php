@@ -8,7 +8,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{{ asset('img/logo favicon.png') }}" rel="icon">
+  <link href="{{ asset('img/default_logo.png') }}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
@@ -73,9 +73,9 @@
         <!-- <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
         @if(url()->current() == route('index'))
-         <a href="#body"><img src="{{ asset('img/logo.png') }}" alt="" title="" /></a>
+         <a href="#body"><img src="{{ asset('img/default_logo.png') }}" alt="" title="" /></a>
         @else
-          <a href="{{ route('index') }}"><img src="{{ asset('img/logo.png') }}" alt="" title="" /></a>
+          <a href="{{ route('index') }}"><img src="{{ asset('img/default_logo.png') }}" alt="" title="" /></a>
         @endif
       </div>
 

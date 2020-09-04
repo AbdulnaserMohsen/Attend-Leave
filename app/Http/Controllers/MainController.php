@@ -18,6 +18,9 @@ use App\DayStatus;
 use App\Weekends;
 use App\AttendLeave;
 use App\Calender;
+use App\About;
+use App\Services;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -292,4 +295,81 @@ class MainController extends Controller
 
        return view('admin',compact('users_count','jobs_count','today_count','monitors_count','admins_count','super_admins_count'));
     }
+
+    public function content()
+    {
+        $service_count = Services::all()->count();
+        return view('content',compact('service_count'));
+    }
+    public function home()
+    {
+        $home =  About::all();
+       return view('home_content',compact('home'));
+    }
+    public function services()
+    {
+        $services = Services::all();
+       return view('services_content',compact('services'));
+    }
+
+    protected function validator(array $data)
+    {
+       return Validator::make($data, [
+            'name_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic} ]+$/u'],
+            'name_en' => ['required', 'string', 'max:255' , 'regex:/^[a-zA-Z ]+$/u'],
+            'description_ar' => ['required', 'string', 'max:255' , 'regex:/^[\p{Arabic} ]+$/u'],
+            'description_en' => ['required', 'string', 'max:255' , 'regex:/^[a-zA-Z ]+$/u'],
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+    }
+
+    public function add_update_home(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        //image
+        if ($request->hasFile('image')) 
+        {
+            $file = $request->file('image');
+            $filename = "user_logo";
+            $file->move('img',$filename);
+        }
+        else
+        {
+            $filename = 'default_logo.png'; //default logo
+        }
+
+        About::updateOrCreate([
+            'company_name_ar' => $request->get('name_ar'),
+            'description_ar' => $request->get('description_ar'),
+            'description_en' => $request->get('description_en'),
+            'image' => $filename,
+        ]);
+
+        return response()->json(['success'=>'saved']);
+    }
+
+    public function add_service(Request $request)
+    {
+        $services = Services::all();
+       return view('services_content',compact('services'));
+    }
+
+    public function update_service(Request $request , $id)
+    {
+        $services = Services::all();
+       return view('services_content',compact('services'));
+    }
+    public function delete_service(Request $request , $id , $model)
+    {
+        $services = Services::all();
+       return view('services_content',compact('services'));
+    }
+    public function delete_all_services(Request $request , $id)
+    {
+        $services = Services::all();
+       return view('services_content',compact('services'));
+    }
+
 }

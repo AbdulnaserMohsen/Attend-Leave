@@ -161,12 +161,12 @@ $(document).on( "click","[name ='login_toggle']", function()
 
     function validate (input) 
 	{
-		if($(input).attr('name') == 'name_ar' || $(input).attr('name') == 'job_ar') 
+		if($(input).attr('name') == 'name_ar' || $(input).attr('name') == 'job_ar' || $(input).attr('name') == 'description_ar') 
 		{
 			if($(input).val().trim().match(/^[\u0621-\u064A ]+$/) == null)//only arabic letters
 				return false;
         }
-		else if($(input).attr('name') == 'name_en' ||$(input).attr('name') == 'job_en') 
+		else if($(input).attr('name') == 'name_en' ||$(input).attr('name') == 'job_en'  || $(input).attr('name') == 'description_en') 
 		{
 			if($(input).val().trim().match(/^[a-zA-Z ]+$/)== null)//only English letters
 				return false;

@@ -34,7 +34,11 @@
 						        	<div class="title">
 							          <h2>{{$stat_user['name']}}</h2>
 							        </div>
+							        @if(Route::current()->getName() == 'statictics')
+							        <div class="col-md-10" >
+							        @else
 							        <div class="col-md-12" >
+							       	@endif
 							        	<div class="col-md-3">
 							        		<div class="card text-white bg-danger mb-3 text-center" style="max-width: 18rem;">
 											  <div class="card-header">{{ __('admin.absense') }}</div>
@@ -81,7 +85,11 @@
 										</div>
 							        	
 							        </div>
-							        <div class="col-md-11">
+							        @if(Route::current()->getName() == 'statictics')
+							        	<div class="col-md-10" >
+							        @else
+							        	<div class="col-md-12" >
+							       	@endif
 							        	<div class="row">
 							        		<div class="col-md-6 " class="chart-container" >
 							        			<canvas class="doughnut" id="doughnut{{$loop->iteration}}" width="50" height="30"></canvas>
@@ -93,7 +101,11 @@
 							        </div>
 						        </div>
 
-						        <div class="table-responsive col-md-11 " id="table_section">
+						        @if(Route::current()->getName() == 'statictics')
+						        	<div class="table-responsive col-md-10 " id="table_section">
+						        @else
+						        	<div class="table-responsive col-md-12 " id="table_section">
+						       	@endif
 
 						        	<div id="mytable_wrapper" class="dataTables_wrapper no-footer">
 						        		<div class="dataTables_length" >
