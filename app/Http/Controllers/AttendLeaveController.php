@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Validator;
 use App\DayStatus;
 use App;
 use App\User;
+use App\About;
 
 class AttendLeaveController extends Controller
 {
@@ -40,7 +41,8 @@ class AttendLeaveController extends Controller
 
         $attend_leaves = AttendLeave::where('calender_id',$date->id)->paginate($paginate);
         $user_statuses = UserStatus::all();
-        return view('table_attend_today',compact('date','attend_leaves','user_statuses'));
+        $home =  About::first();
+        return view('table_attend_today',compact('date','attend_leaves','user_statuses','home'));
     }
 
     
@@ -96,8 +98,8 @@ class AttendLeaveController extends Controller
 
         //dd($years,$months);
 
-
-        return view('year_month_statistics',compact('year','years','months'));
+        $home =  About::first();
+        return view('year_month_statistics',compact('year','years','months','home'));
         
 
     }
@@ -169,8 +171,8 @@ class AttendLeaveController extends Controller
         }
 
         //dd($attend_leaves,$statistics_of_users,$workers );
-
-        return view('statistics',compact('statistics_of_users','workers','year','month','worker_paginate','table_paginate'));
+        $home =  About::first();
+        return view('statistics',compact('statistics_of_users','workers','year','month','worker_paginate','table_paginate','home'));
 
     }
 

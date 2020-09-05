@@ -19,8 +19,9 @@
 				<section class="" id="add_section">
 					
 					<div class="" >
-				        
-				        <h2 class="forms_title">{{ __('admin.setting') }}</h2>
+				        <div class="section-header ">
+				          <h2>{{ __('admin.setting') }}</h2>
+				        </div>
 				        
 				        <form class="forms_form validate-form" id="setting_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_setting')}}" data-page="?page={{$settings->currentPage()}}" >
 				          @csrf

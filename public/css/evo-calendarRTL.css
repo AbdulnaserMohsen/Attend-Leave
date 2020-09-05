@@ -86,13 +86,13 @@ input:focus, textarea:focus, button:focus {
 }
 .calendar-sidebar > .calendar-year > p {
     margin: 0;
-    font-size: 30px;
+    font-size: 18px;
     display: inline-block;
 }
 .calendar-sidebar > .calendar-year > button.icon-button {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     overflow: visible;
 }
 .calendar-sidebar > .calendar-year > button.icon-button > span {
@@ -532,40 +532,53 @@ button.icon-button > span.chevron-arrow-right {
 
 /* 1280 */
 @media screen and (max-width: 1280px) {
+	.calendar-sidebar {
+        width: 125px;
+    }
+	.event-hide .calendar-inner {
+        max-width: calc(100% - 125px);
+    }
     .calendar-inner {
         padding: 50px 20px 70px 20px;
-        max-width: calc(100% - 580px);
+        max-width: calc(100% - 295px);
+		margin-right: 125px;
     }
     .sidebar-hide .calendar-inner {
-        max-width: calc(100% - 380px);
+        max-width: calc(100% - 170px);
     }
     tr.calendar-header .calendar-header-day,
     tr.calendar-body .calendar-day {
         padding: 10px 5px;
     }
     .calendar-events {
-        width: 380px;
+        width: 170px;
         padding: 70px 20px 60px 20px;
     }
+	.calendar-events > .event-header > p {
+		font-size: 18px;
+	}
+	.event-container > .event-info > p.event-title {
+		font-size: 18px;
+	}
 }
 /* 1024 */
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1055px) {
     .calendar-sidebar {
-        width: 175px;
+        width: 125px;
     }
     .calendar-inner {
         padding: 50px 10px 70px 10px;
-        max-width: calc(100% - 475px);
-        margin-right: 175px;
+        max-width: calc(100% - 285px);
+        margin-right: 125px;
     }
     .sidebar-hide .calendar-inner {
-        max-width: calc(100% - 300px);
+        max-width: calc(100% - 160px);
     }
     .event-hide .calendar-inner {
-        max-width: calc(100% - 175px);
+        max-width: calc(100% - 125px);
     }
     .calendar-events {
-        width: 300px;
+        width: 160px;
         padding: 70px 10px 60px 10px;
     }
     tr.calendar-body .calendar-day .day {
@@ -632,31 +645,41 @@ button.icon-button > span.chevron-arrow-right {
     .event-container > .event-info > p {
         font-size: 18px;
     }
+	
+	
+	.calendar-events > .event-header > p {
+		font-size: 18px;
+	}
+	.event-container > .event-info > p.event-title {
+		font-size: 18px;
+	}
 }
 /* md */
-@media screen and (max-width: 991px) {
+/**
+@media screen and (max-width: 934px) {
     .calendar-sidebar {
-        width: 150px;
+        width: 120px;
     }
     .calendar-inner {
         padding: 50px 10px 70px 10px;
         max-width: calc(100% - 425px);
-        margin-right: 150px;
+        margin-left: 120px;
     }
     .sidebar-hide .calendar-inner {
-        max-width: calc(100% - 275px);
+        max-width: calc(100% - 160px);
     }
     .event-hide .calendar-inner {
-        max-width: calc(100% - 150px);
+        max-width: calc(100% - 120px);
     }
     .calendar-events {
-        width: 275px;
+        width: 160px;
         padding: 70px 10px 60px 10px;
     }
 }
+**/
 
-/* sm */
-@media screen and (max-width: 768px) {
+/* sm  was 768 now 934px*/ 
+@media screen and (max-width: 934px) {
     .calendar-sidebar {
         width: 180px;
     }

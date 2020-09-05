@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\UserStatus;
 use Illuminate\Support\Facades\Validator;
 use Cache;
+use App\About;
 
 class UserStatusController extends Controller
 {
@@ -20,9 +21,10 @@ class UserStatusController extends Controller
     	{
     		Cache::forever('user_status_paginate', $paginate);
     	}
-        $user_statuses=UserStatus::paginate($paginate);
 
-       	return view('table_user_status',compact('user_statuses'));
+        $user_statuses=UserStatus::paginate($paginate);
+        $home =  About::first();
+       	return view('table_user_status',compact('user_statuses','home'));
     }
 
        

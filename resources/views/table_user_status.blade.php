@@ -25,7 +25,9 @@
 				<section class="" id="add_section">
 					
 					<div class="" >
-				        <h2 class="forms_title">{{ __('admin.user_statuses') }} </h2>
+						<div class="section-header ">
+				          <h2>{{ __('admin.user_statuses') }}</h2>
+				        </div>
 				        <form class="forms_form validate-form" id="user_status_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_user_status')}}" data-page="?page={{$user_statuses->currentPage()}}" >
 				          @csrf
 				          

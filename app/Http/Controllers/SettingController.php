@@ -12,6 +12,7 @@ use App\Calender;
 use App\UserStatus;
 use Cache;
 use Illuminate\Support\Facades\Validator;
+use App\About;
 
 class SettingController extends Controller
 {
@@ -32,8 +33,8 @@ class SettingController extends Controller
        	$user_status_count = UserStatus::count();
 
 
-
-       return view('attend_leave',compact('today_count','attend_leave_history_count','setting_count','day_status_count','calender_count','user_status_count'));
+        $home =  About::first();
+        return view('attend_leave',compact('today_count','attend_leave_history_count','setting_count','day_status_count','calender_count','user_status_count','home'));
     }
 
     public function settings($paginate)
@@ -49,8 +50,8 @@ class SettingController extends Controller
         
         $settings=AttendLeaveSetting::paginate($paginate);
        
-
-       	return view('table_setting',compact('settings'));
+        $home =  About::first();
+       	return view('table_setting',compact('settings','home'));
     }
     
 

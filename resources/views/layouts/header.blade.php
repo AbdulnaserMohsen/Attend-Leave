@@ -8,7 +8,7 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="{{ asset('img/default_logo.png') }}" rel="icon">
+  <link href="{{ asset('img/'.$home->image) }}" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
@@ -73,9 +73,9 @@
         <!-- <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
         @if(url()->current() == route('index'))
-         <a href="#body"><img src="{{ asset('img/default_logo.png') }}" alt="" title="" /></a>
+         <a href="#body"><img src="{{ asset('img/'.$home->image) }}" alt="" title="" /></a>
         @else
-          <a href="{{ route('index') }}"><img src="{{ asset('img/default_logo.png') }}" alt="" title="" /></a>
+          <a href="{{ route('index') }}"><img src="{{ asset('img/'.$home->image) }}" alt="" title="" /></a>
         @endif
       </div>
 
@@ -115,7 +115,7 @@
             <li ><a href="{{ route('user_year_months_statistics',\Carbon\Carbon::now()->year) }}">{{ __('all.your_statistics') }} <i class="fa fa-bar-chart"></i></a></li>
             @if(Auth::user()->type>0)
               
-              @if(url()->current() == route('index') || url()->current() == route('home') || url()->current() == route('profile') || Request::is('user_statictics/*') || Request::is('user_year_months_statistics/*') )
+              @if(url()->current() == route('index') || url()->current() == route('home') || url()->current() == route('profile') || Request::is('user_statictics/*') || Request::is('user_year_months_statistics/*') || url()->current() == route('change_password') )
                 <li ><a href="{{ route('admin') }}">{{ __('all.admin') }} <i class="fa fa-cog"></i></a></li>
               @else
                 <li ><a href="{{ route('index') }}">{{ __('all.user') }} <i class="fa fa-user-o"></i></a></li>

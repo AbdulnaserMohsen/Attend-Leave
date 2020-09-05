@@ -11,13 +11,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\rules\Email_Username;
 use Illuminate\Validation\Rule;
+use App\About;
 
 class UserController extends Controller
 {
 	
 	public function change_password()
     {
-        return view('auth.passwords.reset_password');
+        $home =  About::first();
+        return view('auth.passwords.reset_password',compact('home'));
     }
 
     protected function validator(array $data)
@@ -51,7 +53,8 @@ class UserController extends Controller
         
         $users=User::where('type',0)->paginate($paginate);
         $jobs=Job::whereNotIn('id',[1000,2000,3000])->get();
-        return view('table_users',compact('users','jobs'));
+        $home =  About::first();
+        return view('table_users',compact('users','jobs','home'));
     }
 
     protected function validator_full_user(array $data,$id)

@@ -9,6 +9,7 @@ use App\Weekends;
 use Cache;	
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use App\About;
 
 class DayStatusController extends Controller
 {
@@ -40,8 +41,9 @@ class DayStatusController extends Controller
        	//dd($weekends[0]->day_en);
        	$days = $this->days;
        	//dd($days[1]['day_ar']);
-     
-       	return view('table_day_status',compact('day_statuses','weekends','days'));
+        
+        $home =  About::first();
+       	return view('table_day_status',compact('day_statuses','weekends','days','home'));
     }
 
     public function update_weekends($ids)

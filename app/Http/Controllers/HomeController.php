@@ -17,7 +17,7 @@ use Cache;
 use App;
 use Illuminate\Support\Facades\Validator;
 use App\rules\Email_Username;
-
+use App\About;
 
 class HomeController extends Controller
 {
@@ -120,7 +120,8 @@ class HomeController extends Controller
             $user_attend_leave = AttendLeave::where('calender_id',$newday->id)->where('user_id', Auth::id())->first();
             if(in_array(Auth::id(), [1,2,3]) ){$user_attend_leave = AttendLeave::where('calender_id',$newday->id)->where('user_id', 4)->first();}
             //dd($attend_timer,$leave_timer);
-            return view("user_attend",compact("user_statuses","attend_timer","leave_timer","attend_leave_setting","user_attend_leave"));
+            $home =  About::first();
+            return view("user_attend",compact("user_statuses","attend_timer","leave_timer","attend_leave_setting","user_attend_leave","home"));
         } 
         
 
@@ -185,7 +186,8 @@ class HomeController extends Controller
     {
         $jobs = Job::whereNotIn('id',[1000,2000,3000])->get();
         $user= User::find(Auth::id());
-        return view("auth.profile",compact("jobs","user"));
+        $home =  About::first();
+        return view("auth.profile",compact("jobs","user","home"));
     }
 
     protected function validator(array $data)
@@ -233,8 +235,8 @@ class HomeController extends Controller
                             return Carbon::parse($val)->monthName ;
                         });
 
-
-        return view('year_month_statistics',compact('year','years','months'));
+        $home =  About::first();
+        return view('year_month_statistics',compact('year','years','months','home'));
         
 
     }
@@ -302,8 +304,8 @@ class HomeController extends Controller
         }
 
         //dd($attend_leaves,$statistics_of_users,$workers );
-
-        return view('statistics',compact('statistics_of_users','workers','year','month','table_paginate'));
+        $home =  About::first();
+        return view('statistics',compact('statistics_of_users','workers','year','month','table_paginate','home'));
 
     }
 

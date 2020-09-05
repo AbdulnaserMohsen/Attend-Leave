@@ -21,7 +21,7 @@
 				          <h2>{{ __('all.services') }}</h2>
 				        </div>
 
-				        <form class="forms_form validate-form" id="service_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_service')}}" data-page="?page=@if($services->isNotEmpty()) {{$services->currentPage()}} @endif" >
+				        <form class="forms_form validate-form" id="service_form_add"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('add_service')}}" data-page="?page=@if($services->isNotEmpty()){{$services->currentPage()}} @endif" >
 				          @csrf
 				          
 				          <fieldset class="forms_fieldset">
@@ -43,6 +43,25 @@
 				            <div class="forms_field validate-input @error('description_en') has-invalid alert-validate @enderror" data-validate="@error('description_en'){{ $message }} @else{{ __('admin.valid_description_en') }} @enderror">
 				              <span><i class="fa fa-pencil"></i> {{ __('admin.description_en') }}:</span>
 				              <textarea placeholder="{{ __('admin.place_description_en') }}" class="forms_field-input bigger" name="description_en" required autocomplete="description_en"></textarea>
+				            </div>
+
+				            <div class="forms_field validate-input @error('slct') has-invalid alert-validate @enderror" data-validate="@error('slct'){{ $message }} @else{{ __('loginRegister.choose_icon') }} @enderror" >
+				              <div class="select">
+				              	<style>
+									select{
+										font-family: fontAwesome
+									}
+								</style>
+				                <select name="slct">
+				                  <option selected disabled  >{{ __('loginRegister.choose_icon') }}</option>
+				                  
+				                  @foreach($fonts_list as $font )
+				                    @php($val =str_replace('"', '', $font['val']))
+				                    <option value="<i class='fa {{$font['fa']}}'></i>">{!!  $val !!}  {{$font['fa']}}</option>
+				                    
+				                  @endforeach
+				                </select>
+				              </div>
 				            </div>
 
 				          </fieldset>
@@ -95,6 +114,7 @@
 			                   <th>{{ __('admin.service_en') }}</th>
 			                   <th>{{ __('admin.description_ar') }}</th>
 			                   <th>{{ __('admin.description_en') }}</th>
+			                   <th>{{ __('admin.icon') }}</th>
 			                   <th>{{ __('admin.edit') }}</th>
 			                   <th>{{ __('admin.delete') }}</th>
 			                
@@ -110,6 +130,7 @@
 								    <td>{{$service->service_title_en}}</td>
 								    <td>{{$service->service_description_ar}}</td>
 								    <td>{{$service->service_description_en}}</td>
+								    <td>{!! $service->font !!}</td>
 								    <td>
 								    	<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_{{$loop->iteration}}" ><span class="glyphicon glyphicon-pencil"></span> {{ __('admin.edit') }}</button>
 								    </td>
@@ -120,7 +141,7 @@
 										@endif
 									@endif
 								    <td>
-								    	<button class="btn btn-danger btn-xs" name="delete" data-section="#page_section" data-contanier="#page_container" data-url="{{route('delete_service',$service->id)}}" data-page="?page={{$page}}"><span class="glyphicon glyphicon-trash"></span> {{ __('admin.delete') }}</button>
+								    	<button class="btn btn-danger btn-xs" name="delete" data-section="#page_section" data-contanier="#page_container" data-url="{{route('delete_service' ,['id'=>$service->id,'model'=>'Services'])}}" data-page="?page={{$page}}"><span class="glyphicon glyphicon-trash"></span> {{ __('admin.delete') }}</button>
 								    </td>
 								</tr>
 								@endforeach
@@ -136,7 +157,7 @@
 							</div>
 
 							<div class="col-md-2 ">
-								<button class="btn btn-danger btn-xs" id="delete_all" data-section="#page_section" data-contanier="#page_container"  data-page="?page=@if($services->isNotEmpty()) {{$services->currentPage()}} @endif" data-url="{{route('delete_all_services',':ids')}}" data-count="{{$services->count()}}">
+								<button class="btn btn-danger btn-xs" id="delete_all" data-section="#page_section" data-contanier="#page_container"  data-page="?page=@if($services->isNotEmpty()){{$services->currentPage()}} @endif" data-url="{{route('delete_all_services',':ids')}}" data-count="{{$services->count()}}">
 									<span class="glyphicon glyphicon-trash"></span>
 									{{ __('admin.delete_all') }}
 								</button>
@@ -161,20 +182,51 @@
 					        	<button type="button" class="close" data-dismiss="modal" ><span class="glyphicon glyphicon-remove" ></span></button>
 					      	</div>
 					      	
-						    <form class="forms_form validate-form" id="service_form_update_{{$loop->iteration}}"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('update_service',$service->id)}}" data-page="?page=@if($services->isNotEmpty()) {{$services->currentPage()}} @endif">
+						    <form class="forms_form validate-form" id="service_form_update_{{$loop->iteration}}"  data-section="#page_section" data-contanier="#page_container" data-url="{{route('update_service',$service->id)}}" data-page="?page=@if($services->isNotEmpty()){{$services->currentPage()}} @endif">
 						    @csrf
 					      		<div class="modal-body">
 					      	   
 						          <h2 class="forms_title">{{ __('admin.edit') }} {{ __('admin.service') }}</h2>
 						          <fieldset class="forms_fieldset">
-						            <div class="forms_field validate-input @error('service_en') has-invalid alert-validate @enderror" data-validate="@error('service_en'){{ $message }} @else{{ __('admin.valid_service_en') }} @enderror" >
-						              <span> {{ __('admin.service_en') }}:</span>
-						              <input  type="text" placeholder="{{ __('admin.place_service_en') }}" class="forms_field-input bigger" name="service_en" value="{{$service->service_en}}" required autocomplete="service_en" />
+						             <div class="forms_field validate-input @error('name_ar') has-invalid alert-validate @enderror" data-validate="@error('name_ar'){{ $message }} @else{{ __('admin.valid_name_ar') }} @enderror" >
+						              <span> {{ __('admin.service_ar') }}:</span>
+						              <input  type="text" placeholder="{{ __('admin.place_name_ar') }}" class="forms_field-input bigger" name="name_ar" value="{{$service->service_title_ar}}" required autocomplete="name_ar" />
 						            </div>
 
-									<div class="forms_field validate-input @error('service_ar') has-invalid alert-validate @enderror" data-validate="@error('service_ar'){{ $message }} @else{{ __('admin.valid_service_ar') }} @enderror" >
-						              <span> {{ __('admin.service_ar') }}:</span>
-						              <input  type="text" placeholder="{{ __('admin.place_service_ar') }}" class="forms_field-input bigger" name="service_ar" value="{{$service->service_ar}}" required autocomplete="service_ar" />
+									<div class="forms_field validate-input @error('name_en') has-invalid alert-validate @enderror" data-validate="@error('name_en'){{ $message }} @else{{ __('admin.valid_name_en') }} @enderror" >
+						              <span> {{ __('admin.service_en') }}:</span>
+						              <input  type="text" placeholder="{{ __('admin.place_name_en') }}" class="forms_field-input bigger" name="name_en" value="{{$service->service_title_en}}" required autocomplete="name_en" />
+						            </div>
+
+						            <div class="forms_field validate-input @error('description_ar') has-invalid alert-validate @enderror" data-validate="@error('description_ar'){{ $message }} @else{{ __('admin.valid_description_ar') }} @enderror">
+						              <span><i class="fa fa-pencil"></i> {{ __('admin.description_ar') }}:</span>
+						              <textarea placeholder="{{ __('admin.place_description_ar') }}" class="forms_field-input bigger" name="description_ar" required autocomplete="description_ar">{{$service->service_description_ar}}</textarea>
+						            </div>
+
+						            <div class="forms_field validate-input @error('description_en') has-invalid alert-validate @enderror" data-validate="@error('description_en'){{ $message }} @else{{ __('admin.valid_description_en') }} @enderror">
+						              <span><i class="fa fa-pencil"></i> {{ __('admin.description_en') }}:</span>
+						              <textarea placeholder="{{ __('admin.place_description_en') }}" class="forms_field-input bigger" name="description_en" required autocomplete="description_en">{{$service->service_description_en}}</textarea>
+						            </div>
+
+						            <div class="forms_field validate-input @error('slct') has-invalid alert-validate @enderror" data-validate="@error('slct'){{ $message }} @else{{ __('loginRegister.choose_icon') }} @enderror" >
+						              <div class="select">
+						              	<style>
+											select{
+												font-family: fontAwesome
+											}
+										</style>
+						                <select name="slct">
+						                  <option  disabled  >{{ __('loginRegister.choose_icon') }}</option>
+						                  
+						                  @foreach($fonts_list as $font )
+						                    @php($val =str_replace('"', '', $font['val']))
+						                    @php($fa = $font['fa'])
+						                    @php($faii = "<i class='fa ".$fa."'></i>")
+						                    <option @if($service->font == $faii) selected @endif  value="{{$faii}}">{!! $val !!}  {{$fa}}</option>
+						                    
+						                  @endforeach
+						                </select>
+						              </div>
 						            </div>
 
 						          </fieldset>

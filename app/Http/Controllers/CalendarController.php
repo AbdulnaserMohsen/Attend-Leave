@@ -12,6 +12,7 @@ use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use App;
 use Cache;
+use App\About;
 
 class CalendarController extends Controller
 {
@@ -81,14 +82,16 @@ class CalendarController extends Controller
         if ($request->has('year')) 
         {
             //dd($vacations , $year);
-            $returnHTML = view('partial.calendar',compact('daystatuses','weekends','events','daily_event','year','current_date','month'))->render();
+            $home =  About::first();
+            $returnHTML = view('partial.calendar',compact('daystatuses','weekends','events','daily_event','year','current_date','month','home'))->render();
             return response()->json(['success'=>__('admin.done'),'events'=>$events,'daily_event'=>$daily_event,'year'=>$year,'html'=>$returnHTML]);
             /*$success = __('admin.done');
             return view('calendar',compact('success','daystatuses','weekends','vacations','vacations_events','year','current_date'));*/
         }
         else
         {
-            return view('calendar',compact('daystatuses','weekends','events','daily_event','year','current_date','month'));
+            $home =  About::first();
+            return view('calendar',compact('daystatuses','weekends','events','daily_event','year','current_date','month','home'));
         }
     }
     /*public function calendar1(Request $request)

@@ -37,7 +37,7 @@
 					              <h4 class="title counter">
 					              	<span class="js-number-counter" >{{$service_count}}</span>
 					              </h4>
-					              <h4 class="title"><a href="{{route('services')}}">{{ __('all.services') }}</a></h4>
+					              <h4 class="title"><a href="{{route('services',Cache::get('services_paginate') )}}">{{ __('all.services') }}</a></h4>
 					              <p class="description"></p>
 					            </div>
 					          </div>

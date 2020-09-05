@@ -12,7 +12,7 @@
 				    <section id="services">
 				      	<div class="">
 					        <div class="section-header">
-					          <h2>{{ __('admin.dashboard') }}</h2>
+					          <h2>{{ __('admin.attend&leave') }}</h2>
 					        </div>
 
 					        <div class="row">

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Job;
 use Illuminate\Support\Facades\Validator;
 use Cache;
+use App\About;
 
 class JobController extends Controller
 {
@@ -24,7 +25,8 @@ class JobController extends Controller
     	}
         
         $jobs=Job::whereNotIn('id',[1000,2000,3000])->paginate($paginate);
-        return view('table',compact('jobs'));
+        $home =  About::first();
+        return view('table',compact('jobs','home'));
     }
 
     protected function validator(array $data)

@@ -75,7 +75,7 @@ $(document).on( "click","[name ='login_toggle']", function()
     [ Validate after type ]*/
     
 	/*on blur show required validate or show that true for required input*/
-	$(document).on( "blur",".validate-input input", function()
+	$(document).on( "blur",".validate-input input, .validate-input textarea", function()
 	{
 		if(validate(this) == false)
 		{
@@ -110,7 +110,7 @@ $(document).on( "click","[name ='login_toggle']", function()
 	/*on sumbmit*/
 	$(document).on( "submit",".validate-form", function(event)
     {
-		var input = $(this).find('.validate-input input');
+		var input = $(this).find('.validate-input input, .validate-input textarea');
 		var selects = $(this).find('.select select');
 	
         var check = true;
@@ -151,7 +151,7 @@ $(document).on( "click","[name ='login_toggle']", function()
 
 
     /*focus required*/
-	$(document).on( "focus",".validate-input input", function()
+	$(document).on( "focus",".validate-input input, .validate-input textarea", function()
 	{
 		hideValidate(this);
         $(this).parent().removeClass('true-validate');
@@ -226,7 +226,7 @@ $(document).on( "click","[name ='login_toggle']", function()
         }
 	    else 
 		{
-            if($(input).val().trim() == '')
+            if($(input).val().trim() == '' && $(input).attr('type') != 'file')
 			{
 				return false;
             }

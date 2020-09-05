@@ -54,6 +54,10 @@
                <a href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>{{ __('admin.statistics') }}</a>
             </li>
 
+            <li>
+               <a href="{{route('content')}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square-o fa-stack-1x "></i></span>{{ __('admin.content') }}</a>
+            </li>
+
             @if(Auth::user()->type == 3)
             
             <li >
