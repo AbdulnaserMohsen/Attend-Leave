@@ -25,27 +25,27 @@
 				          @csrf
 				          
 				          <fieldset class="forms_fieldset">
-				            <div class="forms_field validate-input @error('name_ar') has-invalid alert-validate @enderror" data-validate="@error('name_ar'){{ $message }} @else{{ __('admin.valid_name_ar') }} @enderror" >
+				            <div class="forms_field validate-input @error('name_ar') has-invalid alert-validate @enderror" data-validate="@error('name_ar'){{ $message }} @else{{ __('loginRegister.valid_name_ar') }} @enderror" >
 				              <span> {{ __('admin.service_ar') }}:</span>
-				              <input  type="text" placeholder="{{ __('admin.place_name_ar') }}" class="forms_field-input bigger" name="name_ar" value="{{ old('name_ar') }}" required autocomplete="name_ar" />
+				              <input  type="text" placeholder="{{ __('admin.place_service_ar') }}" class="forms_field-input bigger" name="name_ar" value="{{ old('name_ar') }}" required autocomplete="name_ar" />
 				            </div>
 
-							<div class="forms_field validate-input @error('name_en') has-invalid alert-validate @enderror" data-validate="@error('name_en'){{ $message }} @else{{ __('admin.valid_name_en') }} @enderror" >
+							<div class="forms_field validate-input @error('name_en') has-invalid alert-validate @enderror" data-validate="@error('name_en'){{ $message }} @else{{ __('loginRegister.valid_name_en') }} @enderror" >
 				              <span> {{ __('admin.service_en') }}:</span>
-				              <input  type="text" placeholder="{{ __('admin.place_name_en') }}" class="forms_field-input bigger" name="name_en" value="{{ old('name_en') }}" required autocomplete="name_en" />
+				              <input  type="text" placeholder="{{ __('admin.place_service_en') }}" class="forms_field-input bigger" name="name_en" value="{{ old('name_en') }}" required autocomplete="name_en" />
 				            </div>
 
-				            <div class="forms_field validate-input @error('description_ar') has-invalid alert-validate @enderror" data-validate="@error('description_ar'){{ $message }} @else{{ __('admin.valid_description_ar') }} @enderror">
-				              <span><i class="fa fa-pencil"></i> {{ __('admin.description_ar') }}:</span>
-				              <textarea placeholder="{{ __('admin.place_description_ar') }}" class="forms_field-input bigger" name="description_ar" required autocomplete="description_ar"></textarea>
+				            <div class="forms_field validate-input @error('description_ar') has-invalid alert-validate @enderror" data-validate="@error('description_ar'){{ $message }} @else{{ __('admin.valid_description_service_ar') }} @enderror">
+				              <span><i class="fa fa-pencil"></i> {{ __('admin.description_service_ar') }}:</span>
+				              <textarea placeholder="{{ __('admin.place_description_service_ar') }}" class="forms_field-input bigger" name="description_ar" required autocomplete="description_ar"></textarea>
 				            </div>
 
-				            <div class="forms_field validate-input @error('description_en') has-invalid alert-validate @enderror" data-validate="@error('description_en'){{ $message }} @else{{ __('admin.valid_description_en') }} @enderror">
-				              <span><i class="fa fa-pencil"></i> {{ __('admin.description_en') }}:</span>
-				              <textarea placeholder="{{ __('admin.place_description_en') }}" class="forms_field-input bigger" name="description_en" required autocomplete="description_en"></textarea>
+				            <div class="forms_field validate-input @error('description_en') has-invalid alert-validate @enderror" data-validate="@error('description_en'){{ $message }} @else{{ __('admin.valid_description_service_en') }} @enderror">
+				              <span><i class="fa fa-pencil"></i> {{ __('admin.description_service_en') }}:</span>
+				              <textarea placeholder="{{ __('admin.place_description_service_en') }}" class="forms_field-input bigger" name="description_en" required autocomplete="description_en"></textarea>
 				            </div>
 
-				            <div class="forms_field validate-input @error('slct') has-invalid alert-validate @enderror" data-validate="@error('slct'){{ $message }} @else{{ __('loginRegister.choose_icon') }} @enderror" >
+				            <div class="forms_field validate-input @error('slct') has-invalid alert-validate @enderror" data-validate="@error('slct'){{ $message }} @else{{ __('admin.choose_icon') }} @enderror" >
 				              <div class="select">
 				              	<style>
 									select{
@@ -53,7 +53,7 @@
 									}
 								</style>
 				                <select name="slct">
-				                  <option selected disabled  >{{ __('loginRegister.choose_icon') }}</option>
+				                  <option selected disabled  >{{ __('admin.choose_icon') }}</option>
 				                  
 				                  @foreach($fonts_list as $font )
 				                    @php($val =str_replace('"', '', $font['val']))

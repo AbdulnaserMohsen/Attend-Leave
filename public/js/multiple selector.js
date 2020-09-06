@@ -32,12 +32,21 @@ $(document).ready(function()
 			{
 				//console.log(data);
 				$(section).load(link +" "+ contanier);
-				swal(updated, 
+				if(data.hasOwnProperty("success"))
 				{
-				  icon: "success",
-				  buttons: false,
-				  timer: 1500,
-				});
+					swal(updated, 
+					{
+					  icon: "success",
+					  buttons: false,
+					  timer: 1500,
+					});
+				}					
+				else if(data.hasOwnProperty("failed"))
+				{
+					swal(
+							data.failed,
+						);
+				}
 				
 			},
 			error:function(data)

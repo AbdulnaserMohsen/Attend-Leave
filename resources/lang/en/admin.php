@@ -85,6 +85,10 @@ return [
     'attend_after' =>"attend after ",
     'leave_before' =>"leave before ",
     'attend_leave_status' =>"Attend and Leave status",
+    'attend_by_user'=>'Attend by User',
+    'attend_by_admin'=>'Attend by Admin',
+    'leave_by_user'=>'Leave by User',
+    'leave_by_admin'=>'Leave by Admin',
     'choose_attend_status' =>"Choose the attend status",
     'choose_leave_status' =>"Choose the leave status",
     'change' =>"Change",
@@ -98,6 +102,36 @@ return [
     'other_attend' =>"Other Attend",
     'other_leave' =>"Other Leave",
 
+    //content
+    'content' =>"Home Content",
+    'compnay_name_ar' =>"Company Name in Arabic",
+    'place_compnay_name_ar' =>"جوجل , نوكيا ,...",
+    'company_name_en' =>"Company Name in English",
+    'place_compnay_name_en' =>"Google, Nokia, ...",
+    'description_ar' =>"Vision of company in Arabic",
+    'place_description_ar' =>"...تهدف الشركة إلى  ",
+    'valid_description_ar' =>"Company Vision should be Arabic characters only",
+    'description_en' =>"Vision of company in English",
+    'place_description_en' =>"The Company seeks to ...",
+    'valid_description_en' =>"Company Vision should be English characters only",
+    'logo' =>"Company Logo",
+    'valid_logo' =>"Logo musht be photo with extensions:jpeg,png,jpg,gif,svg",
+
+    //service
+    'service_ar' =>"Service name in Arabic",
+    'place_service_ar' =>"...نظام ",
+    'service_en' =>"Service name in English",
+    'place_service_en' =>"System ...",
+    'description_service_ar' =>"Description of service in Arabic",
+    'place_description_service_ar' =>"...يمكنك من خلال النظام ",
+    'valid_description_service_ar' =>"Description should be in Arabic characters only",
+    'description_service_en' =>"Description of service in English",
+    'place_description_service_en' =>"Through System you can ...",
+    'valid_description_service_en' =>"Description should be in English characters only",
+    'choose_icon' =>"Choose Icon",
+    'icon' =>"Icon",
+
+    
     
 
 

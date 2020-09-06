@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Attndence zewail schools',
+    'title' => 'Attndence :company',
     'language' => 'اللغة العربية ',
     'home' => 'Home',
     'services' => 'Services',
@@ -38,6 +38,8 @@ return [
     'no_attendence_day' => 'This day has no attendence',
     'reason_no_attendence' => 'This day maybe vactation or before the system work or not come',
 
+    //not authorized
+    'not_authorized' => 'You are not authorized to do this action',
 
 
 

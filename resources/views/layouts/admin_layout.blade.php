@@ -34,11 +34,16 @@
             <li>
                <a href="#"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>{{ __('admin.attend&leave') }}</a>
                <ul class="nav-pills nav-stacked" style="list-style-type:none;">
-                  <li><a href="{{route('day',['date'=>\Carbon\Carbon::now()->format('Y-m-d'),'paginate'=>Cache::get('attend_today_paginate') ])}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-check-o fa-stack-1x "></i></span>{{ __('admin.today') }}</a></li>
-                  <li><a href="{{route('calendar')}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>{{ __('admin.calendar') }}</a></li>
-                  <li><a href="{{route('settings',Cache::get('user_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>{{ __('admin.setting') }}</a></li>
-                  <li><a href="{{route('day_statuses',Cache::get('day_status_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-o fa-stack-1x "></i></span>{{ __('admin.day_statuses') }}</a></li>
-                  <li><a href="{{route('user_statuses',Cache::get('user_status_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user-times fa-stack-1x "></i></span>{{ __('admin.user_statuses') }}</a></li>
+                  
+                  <li @if(Route::current()->getName() == 'day' ) class="active" @endif><a href="{{route('day',['date'=>\Carbon\Carbon::now()->format('Y-m-d'),'paginate'=>Cache::get('attend_today_paginate') ])}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-check-o fa-stack-1x "></i></span>{{ __('admin.today') }}</a></li>
+                  
+                  <li @if(Route::current()->getName() == 'calendar' ) class="active" @endif ><a href="{{route('calendar')}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar fa-stack-1x "></i></span>{{ __('admin.calendar') }}</a></li>
+                  
+                  <li @if(Route::current()->getName() == 'settings' ) class="active" @endif ><a href="{{route('settings',Cache::get('user_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cog fa-stack-1x "></i></span>{{ __('admin.setting') }}</a></li>
+                  
+                  <li @if(Route::current()->getName() == 'day_statuses' ) class="active" @endif ><a href="{{route('day_statuses',Cache::get('day_status_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-calendar-o fa-stack-1x "></i></span>{{ __('admin.day_statuses') }}</a></li>
+                  
+                  <li @if(Route::current()->getName() == 'user_statuses' ) class="active" @endif ><a href="{{route('user_statuses',Cache::get('user_status_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user-times fa-stack-1x "></i></span>{{ __('admin.user_statuses') }}</a></li>
                </ul>
             </li>
 
@@ -50,25 +55,25 @@
                <a href="{{route('jobs',Cache::get('job_paginate') )}}"> <span class="fa-stack fa-lg pull-left"><i class="fa fa-shopping-bag fa-stack-1x "></i></span>{{ __('admin.jobs') }}</a>
             </li>
 
-            <li>
-               <a href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>{{ __('admin.statistics') }}</a>
+            <li @if(Route::current()->getName() == 'year_month_statistics' ) class="active" @endif>
+               <a  href="{{route('year_month_statistics',\Carbon\Carbon::now()->year)}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-bar-chart fa-stack-1x "></i></span>{{ __('admin.statistics') }}</a>
             </li>
 
-            <li>
+            <li @if(Route::current()->getName() == 'content' ) class="active" @endif >
                <a href="{{route('content')}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-pencil-square-o fa-stack-1x "></i></span>{{ __('admin.content') }}</a>
             </li>
 
             @if(Auth::user()->type == 3)
             
-            <li >
+            <li @if(Route::current()->getName() == 'monitors' ) class="active" @endif >
                <a href="{{route('monitors',Cache::get('monitor_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-eye fa-stack-1x "></i></span>{{ __('admin.monitors') }}</a>
             </li>
 
-            <li >
+            <li @if(Route::current()->getName() == 'admins' ) class="active" @endif >
                <a href="{{route('admins',Cache::get('admin_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-cogs fa-stack-1x "></i></span>{{ __('admin.admins') }}</a>
             </li>
             
-            <li >
+            <li @if(Route::current()->getName() == 'super_admins' ) class="active" @endif >
                <a href="{{route('super_admins',Cache::get('super_admin_paginate') )}}"><span class="fa-stack fa-lg pull-left"><i class="fa fa-magic fa-stack-1x "></i></span>{{ __('admin.super_admins') }}</a>
             </li>
             @endif

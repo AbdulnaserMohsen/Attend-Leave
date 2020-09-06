@@ -17,8 +17,7 @@ class MonitorAdmin
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::check()) return abort(404);
-        
+        if(!Auth::check()) return abort(404); 
         else if(auth()->user()->type <  1) return abort(404);
 
         return $next($request);

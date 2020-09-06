@@ -2,7 +2,11 @@
 <html @if(app()->getLocale()=="en" )lang="en" dir="ltr" @else lang="ar" dir="rtl" @endif>
 <head>
   <meta charset="utf-8">
-  <title>{{ __('all.title') }}</title>
+  @if(app()->getLocale()=="ar" )
+    <title>{{ __('all.title', ['company' => $home->company_name_ar ]) }}</title>
+  @else
+    <title>{{ __('all.title', ['company' => $home->company_name_en ]) }}</title>
+  @endif
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">

@@ -36,12 +36,6 @@ Route::middleware(['MonitorAdmin'])->group(function ()
 
 	//Day_statuses
 	Route::get('/attend_leave/day_statuses/{paginate}', 'DayStatusController@day_statuses')->name('day_statuses');
-	Route::post('/add_day_status', 'DayStatusController@add_day_status')->name('add_day_status');
-	Route::post('/update_day_status/{id}', 'DayStatusController@update_day_status')->name('update_day_status');
-	Route::get('/delete_day_status/{id}', 'DayStatusController@delete_day_status')->name('delete_day_status');
-	Route::get('/delete_all_day_statuses/{ids}', 'DayStatusController@delete_all_day_statuses')->name('delete_all_day_statuses');
-	//weekends
-	Route::get('/update_weekends/{id}', 'DayStatusController@update_weekends')->name('update_weekends');
 
 
 	//User_statuses
@@ -50,8 +44,6 @@ Route::middleware(['MonitorAdmin'])->group(function ()
 	//calender
 	Route::get('/attend_leave/calendar', 'CalendarController@calendar')->name('calendar');
 	Route::get('/change_year/{year}', 'CalendarController@change_year')->name('change_year');
-	Route::post('/add_vacation', 'CalendarController@add_vacation')->name('add_vacation');
-	Route::get('/delete_vacation/{id}', 'CalendarController@delete_vacation')->name('delete_vacation');
 
 	//attendLeave today & history
 	Route::get('/attend_leave/{date}/{paginate}', 'AttendLeaveController@day')->name('day');
@@ -65,11 +57,6 @@ Route::middleware(['MonitorAdmin'])->group(function ()
 	Route::get('/content', 'MainController@content')->name('content');
 	Route::get('/content/home', 'MainController@home')->name('home_content');
 	Route::get('/content/services/{paginate}', 'MainController@services')->name('services');
-	Route::post('/update_home/{id}', 'MainController@update_home')->name('update_home');
-	Route::post('/add_service', 'MainController@add_service')->name('add_service');
-	Route::post('/update_service/{id}', 'MainController@update_service')->name('update_service');
-	Route::get('/delete_service/{id}/{model}', 'MainController@delete_service')->name('delete_service');
-	Route::get('/delete_all_services/{ids}', 'MainController@delete_all_services')->name('delete_all_services');
 
 
 });
@@ -98,15 +85,34 @@ Route::middleware(['Admin'])->group(function ()
 	Route::get('/disable_leave/{id}', 'SettingController@disable_leave')->name('disable_leave');
 	Route::get('/enable_leave/{id}', 'SettingController@enable_leave')->name('enable_leave');
 
+	//Day_statuses
+	Route::post('/add_day_status', 'DayStatusController@add_day_status')->name('add_day_status');
+	Route::post('/update_day_status/{id}', 'DayStatusController@update_day_status')->name('update_day_status');
+	Route::get('/delete_day_status/{id}', 'DayStatusController@delete_day_status')->name('delete_day_status');
+	Route::get('/delete_all_day_statuses/{ids}', 'DayStatusController@delete_all_day_statuses')->name('delete_all_day_statuses');
+	//weekends
+	Route::get('/update_weekends/{id}', 'DayStatusController@update_weekends')->name('update_weekends');
+
 	//User_statuses
 	Route::post('/add_user_status', 'UserStatusController@add_user_status')->name('add_user_status');
 	Route::post('/update_user_status/{id}', 'UserStatusController@update_user_status')->name('update_user_status');
 	Route::get('/delete_user_status/{id}', 'UserStatusController@delete_user_status')->name('delete_user_status');
 	Route::get('/delete_all_user_statuses/{ids}', 'UserStatusController@delete_all_user_statuses')->name('delete_all_user_statuses');
 
+	//calender
+	Route::post('/add_vacation', 'CalendarController@add_vacation')->name('add_vacation');
+	Route::get('/delete_vacation/{id}', 'CalendarController@delete_vacation')->name('delete_vacation');
+
 	//attendLeave today & history
 	Route::post('/attend_leave/update_attend_leave/{id}', 'AttendLeaveController@update_attend_leave')->name('update_attend_leave');
 
+
+	//content
+	Route::post('/update_home/{id}', 'MainController@update_home')->name('update_home');
+	Route::post('/add_service', 'MainController@add_service')->name('add_service');
+	Route::post('/update_service/{id}', 'MainController@update_service')->name('update_service');
+	Route::get('/delete_service/{id}/{model}', 'MainController@delete_service')->name('delete_service');
+	Route::get('/delete_all_services/{ids}', 'MainController@delete_all_services')->name('delete_all_services');
 
 
 });

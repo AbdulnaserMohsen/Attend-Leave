@@ -276,7 +276,7 @@
 				  	{
 						response = ajax(type,url,processData,contentType,datatosend,section,link,contanier);
 						//console.log(data);
-						if(response.hasOwnProperty("success") )
+						if(response.hasOwnProperty("success") && !response.hasOwnProperty("responseJSON"))
 						{
 							console.log(response);
 							$("#calendar").evoCalendar('removeCalendarEvent', id);
@@ -290,6 +290,12 @@
 							  timer: 1500,
 							});
 							
+						}
+						else if(response.hasOwnProperty("failed"))
+						{
+							swal(
+									response.failed,
+								);
 						}
 						else
 						{
@@ -332,7 +338,7 @@
 				response = ajax(type,url,processData,contentType,formData,section,link,contanier);
 
 
-				if(response.hasOwnProperty("success") )
+				if(response.hasOwnProperty("success") && !response.hasOwnProperty("responseJSON") )
 				{
 					console.log(response);
 					if(response.type == 'update')
@@ -366,6 +372,12 @@
 
 					var newresponse = get_last_section();
 					$("#last_section").replaceWith(newresponse.html);
+				}
+				else if(response.hasOwnProperty("failed"))
+				{
+					swal(
+							response.failed,
+						);
 				}
 				else
 				{

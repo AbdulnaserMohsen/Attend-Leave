@@ -72,9 +72,21 @@
 			                   <th>{{ __('all.attend') }}</th>
 			                   <th>{{ __('admin.attend_time') }}</th>
 			                   <th>{{ __('admin.attend_hint') }}</th>
+			                   
+			                   @if(Auth::user()->type == 3)
+				                   <th>{{ __('admin.attend_by_user') }}</th>
+				                   <th>{{ __('admin.attend_by_admin') }}</th>
+			                   @endif
+
 			                   <th>{{ __('all.leave') }}</th>
 			                   <th>{{ __('admin.leave_time') }}</th>
 			                   <th>{{ __('admin.leave_hint') }}</th>
+
+			                   @if(Auth::user()->type == 3)
+				                   <th>{{ __('admin.leave_by_user') }}</th>
+				                   <th>{{ __('admin.leave_by_admin') }}</th>
+				               @endif
+
 			                   <th>{{ __('admin.edit') }}</th>
 			                
 			                </thead>
@@ -97,13 +109,41 @@
 								    @endif
 								    <td> @if(isset($attend_leave->attend_time)) {{date('g:i A', strtotime($attend_leave->attend_time))}} @endif</td>
 								    <td> @if(isset($attend_leave->attend_hint)) {{ __('admin.attend_after') }} {{$attend_leave->attend_hint}} @endif</td>
+								    
+								    @if(Auth::user()->type == 3)
+									    <td> 
+									    	@if(isset($attend_leave->attend_by_user))
+									    		{{date('g:i A', strtotime($attend_leave->attend_by_user))}} 
+									    	@endif
+										</td>
+										<td> 
+									    	@if(isset($attend_leave->attend_by_admin))
+									    		{{date('g:i A', strtotime($attend_leave->attend_by_admin))}} 
+									    	@endif
+										</td>
+								    @endif
+
 								    @if(app()->getLocale()=="ar" )
 								    	<td>{{$attend_leave->status_leave->name_ar}}</td>
 								    @else
 								    	<td>{{$attend_leave->status_leave->name_en}}</td>
 								    @endif
+
 								    <td> @if(isset($attend_leave->leave_time)) {{date('g:i A', strtotime($attend_leave->leave_time))}} @endif</td>
 								    <td> @if(isset($attend_leave->leave_hint)) {{ __('admin.leave_before') }} {{$attend_leave->leave_hint}} @endif</td>
+
+								    @if(Auth::user()->type == 3)
+								    	<td> 
+									    	@if(isset($attend_leave->leave_by_user))
+									    		{{date('g:i A', strtotime($attend_leave->leave_by_user))}} 
+									    	@endif
+										</td>
+										<td> 
+									    	@if(isset($attend_leave->leave_by_admin))
+									    		{{date('g:i A', strtotime($attend_leave->leave_by_admin))}} 
+									    	@endif
+										</td>
+								    @endif
 								    <td>
 								    	<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit_{{$loop->iteration}}" ><span class="glyphicon glyphicon-pencil"></span> {{ __('admin.edit') }}</button>
 								    </td>

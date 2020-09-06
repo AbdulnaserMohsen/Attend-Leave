@@ -464,6 +464,11 @@ class MainController extends Controller
 
     public function update_service(Request $request , $id)
     {
+        if($id == 1)
+        {
+            return response()->json(['failed'=>'not authorized to update']);
+        }
+
         $this->validator_service($request->all())->validate();
 
         $service= Services::find($id);
@@ -480,6 +485,10 @@ class MainController extends Controller
 
     public function delete_service(Request $request , $id , $model)
     {
+        if($id == 1)
+        {
+            return response()->json(['failed'=>'not authorized to delete']);
+        }
         $service = app("App\\$model")::find($id);
         $service->delete();
         
@@ -489,6 +498,10 @@ class MainController extends Controller
 
     public function delete_all_services(Request $request , $ids)
     {
+        if($id == 1)
+        {
+            return response()->json(['failed'=>'not authorized to delete']);
+        }
         $ids = explode(',', $ids);
         Services::whereIn('id',$ids)->delete();
         

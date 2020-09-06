@@ -87,6 +87,10 @@ return [
     'leave_hint' =>"ملاحظة الانصراف",
     'attend_after' =>"تم الحضور بعد",
     'leave_before' =>"تم الانصراف قبل ",
+    'attend_by_user'=>'وقت الحضور عن طريق الموظف',
+    'attend_by_admin'=>'وقت الحضور عن طريق مدير الموقع',
+    'leave_by_user'=>'وقت الانصراف عن طريق الموظف',
+    'leave_by_admin'=>'وقت الانصراف عن طريق مدير الموقع',
     'attend_leave_status' =>"حالة الحضور و الانصراف",
     'choose_attend_status' =>"إختر حالة الحضور",
     'choose_leave_status' =>"إختر حالة الانصراف",
@@ -100,6 +104,36 @@ return [
     'absense' =>"الغياب",
     'other_attend' =>"طرق حضور أخرى",
     'other_leave' =>"طرق إنصراف أخرى",
+
+    //content
+    'content' =>"محتوى الصفحة الرئيسية",
+    'compnay_name_ar' =>"اسم الشركة باللغة العربية",
+    'place_compnay_name_ar' =>"جوجل , نوكيا ,...",
+    'company_name_en' =>"اسم الشركة باللغة الانجليزية",
+    'place_compnay_name_en' =>"Google, Nokia, ...",
+    'description_ar' =>"رؤية الشركة باللغة العربية",
+    'place_description_ar' =>"...تهدف الشركة إلى  ",
+    'valid_description_ar' =>"رؤية الشركة يجب ان يتكون من حروف اللغة العربية فقط",
+    'description_en' =>"رؤية الشركة باللغة الانجليزية",
+    'place_description_en' =>"The Company seeks to ...",
+    'valid_description_en' =>"رؤية الشركة يجب ان يتكون من حروف اللغة الانجليزية فقط",
+    'logo' =>"شعار الشركة",
+    'valid_logo' =>"شعار الشركة يجب ان يكون صوره امتدادها مثل ذلك:jpeg,png,jpg,gif,svg",
+
+    //service
+    'service_ar' =>"اسم الخدمة باللغة العربية",
+    'place_service_ar' =>"...نظام ",
+    'service_en' =>"اسم الخدمة باللغة الانجليزية",
+    'place_service_en' =>"System ...",
+    'description_service_ar' =>"وصف الخدمة باللغة العربية",
+    'place_description_service_ar' =>"...يمكنك من خلال النظام ",
+    'valid_description_service_ar' =>"الوصف يجب ان يتكون من حروف اللغة العربية فقط",
+    'description_service_en' =>"وصف الخدمة باللغة الانجليزية",
+    'place_description_service_en' =>"Through System you can ...",
+    'valid_description_service_en' =>"الوصف يجب ان يتكون من حروف اللغة الانجليزية فقط",
+    'choose_icon' =>"إختر ايقونة",
+    'icon' =>"ايقونة",
+
 
 
 ];

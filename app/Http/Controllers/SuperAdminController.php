@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\rules\Email_Username;
 use Illuminate\Validation\Rule;
+use App\About;
 
 class SuperAdminController extends Controller
 {
@@ -32,7 +33,8 @@ class SuperAdminController extends Controller
         
         $title = __('admin.monitors');
         $url_name = "monitors";
-        return view('table_admin',compact('users','jobs','title','url_name'));
+        $home =  About::first();
+        return view('table_admin',compact('users','jobs','title','url_name','home'));
     }
 
 
@@ -53,7 +55,8 @@ class SuperAdminController extends Controller
 
         $title = __('admin.admins');
         $url_name = "admins";
-        return view('table_admin',compact('users','jobs','title','url_name'));
+        $home =  About::first();
+        return view('table_admin',compact('users','jobs','title','url_name','home'));
     }
 
     public function super_admins($paginate)
@@ -73,7 +76,8 @@ class SuperAdminController extends Controller
 
         $title = __('admin.super_admins');
         $url_name = "super_admins";
-        return view('table_admin',compact('users','jobs','title','url_name'));
+        $home =  About::first();
+        return view('table_admin',compact('users','jobs','title','url_name','home'));
     }
 
 

@@ -144,6 +144,12 @@
 							);
 						
 					}
+					else if(data.hasOwnProperty("failed"))
+					{
+						swal(
+								data.failed,
+							);
+					}
 					else
 					{
 						swal(
@@ -322,6 +328,14 @@
 						$('.close').trigger('click');
 						
 					}
+					else if(data.hasOwnProperty("failed"))
+					{
+						swal(
+								data.failed,
+							);
+						$('.close').trigger('click');
+						$('.close').trigger('click');
+					}
 
 				},
 				error:function(data)
@@ -400,7 +414,7 @@
 			  if (willDelete) 
 			  {
 				var data = get_ajax(url,section,link,contanier);
-				//console.log(data);
+				console.log(data);
 				if(data.success == "deleted")
 				{
 					swal(deleted, 
@@ -416,6 +430,12 @@
 							not_authorized_delete,
 						);
 					
+				}
+				else if(data.hasOwnProperty("failed"))
+				{
+					swal(
+							data.failed,
+						);
 				}
 				else
 				{
