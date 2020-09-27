@@ -9,7 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 use Carbon\Carbon;
-use App\rules\Email_Username;
+use App\Rules\Email_Username;
 use Illuminate\Support\Facades\Hash;
 
 

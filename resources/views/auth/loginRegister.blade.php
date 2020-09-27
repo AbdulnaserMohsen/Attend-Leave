@@ -59,6 +59,8 @@
                     {{ __('loginRegister.remember') }}
                 </label>
             </div>
+          </div>
+          <div class="forms_buttons justify-content-end">
             <input type="submit" value="{{ __('all.login') }}" class="forms_buttons-action">
           </div>
         </form>
@@ -110,7 +112,7 @@
             </div>
 
           </fieldset>
-          <div class="forms_buttons">
+          <div class="forms_buttons justify-content-end">
             <input type="submit" value="{{ __('all.register') }}" class="forms_buttons-action">
           </div>
         </form>

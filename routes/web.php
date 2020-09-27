@@ -157,5 +157,7 @@ Route::middleware(['auth'])->group(function ()
 
 });
 Auth::routes();
-
-
+Auth::routes([
+  'verify' => false,
+  'reset' => false
+]);

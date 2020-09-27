@@ -20,23 +20,23 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
-Route::get('success', 'Api\AuthController@success');
-Route::post('login', 'Api\AuthController@login');
-Route::post('register', 'Api\AuthController@register');
+Route::get('success', 'API\AuthController@success');
+Route::post('login', 'API\AuthController@login');
+Route::post('register', 'API\AuthController@register');
 
 Route::group(['middleware' => 'auth:api'], function() 
 {
 	//profile
-    Route::get('logout', 'Api\AuthController@logout');
-    Route::get('user', 'Api\AuthController@user');
-    Route::post('update_profile', 'Api\AuthController@update_profile');
-    Route::post('update_password', 'Api\AuthController@update_password');
+    Route::get('logout', 'API\AuthController@logout');
+    Route::get('user', 'API\AuthController@user');
+    Route::post('update_profile', 'API\AuthController@update_profile');
+    Route::post('update_password', 'API\AuthController@update_password');
     
 
     //attend and leave
-    Route::get('home', 'Api\HomeController@home');
-    Route::post('user_attend', 'Api\HomeController@user_attend');
-    Route::post('user_leave', 'Api\HomeController@user_leave');
-    Route::post('user_year_months_statistics', 'Api\HomeController@user_year_months_statistics');
-    Route::post('user_statictics', 'Api\HomeController@user_statictics');
+    Route::get('home', 'API\HomeController@home');
+    Route::post('user_attend', 'API\HomeController@user_attend');
+    Route::post('user_leave', 'API\HomeController@user_leave');
+    Route::post('user_year_months_statistics', 'API\HomeController@user_year_months_statistics');
+    Route::post('user_statictics', 'API\HomeController@user_statictics');
 });

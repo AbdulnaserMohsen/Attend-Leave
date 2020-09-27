@@ -26,7 +26,7 @@ return [
     'choose_job' => 'Choose your job',
     'valid_password_confirmation' => 'Confirm password must be the same like password',
     'password_confirmation' => 'Confirm Password',
-    'place_password_confirmation' => 'the same as password to ensure the password',
+    'place_password_confirmation' => 'Enter the password again',
 
     //change password
     'change_password' => 'Change Password',
